@@ -1,0 +1,9 @@
+To build on (hopefully) any GNU/Linux [brackets means "optional"] :
+
+    make [src]
+    [make test]
+    make install
+
+To (un)install the library :
+
+    make (un)install

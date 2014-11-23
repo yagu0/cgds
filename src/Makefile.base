@@ -1,0 +1,13 @@
+CC = gcc
+CFLAGS = -g -std=gnu99 -fPIC
+LDFLAGS = -shared
+INCLUDES = -I..
+TARGET = libcgds.so
+
+all: obj/$(TARGET)
+
+clean:
+	rm -f obj/*.o
+	rm -f obj/$(TARGET)
+
+.PHONY: all clean
