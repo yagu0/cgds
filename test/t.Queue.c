@@ -115,7 +115,7 @@ void t_queue_copy() //FTEST
 		queue_push(q, rand() % 42);
 	Queue* qc = queue_copy(q);
 
-	lu_assert_int_eq(q->size, qc->size);
+	lu_assert_int_eq(queue_size(q), queue_size(qc));
 	int a, b;
 	for (int i = 0; i < n; i++)
 	{

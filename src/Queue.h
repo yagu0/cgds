@@ -9,24 +9,15 @@
 #include <string.h>
 #include "cgds/types.h"
 #include "cgds/safe_alloc.h"
-
-/**
- * @brief Generic internal queue cell.
- */
-typedef struct QueueCell {
-	void* data; ///< Generic data contained in the cell.
-	struct QueueCell* next; ///< Next cell in the internal single-linked list.
-} QueueCell;
+#include "cgds/Vector.h"
 
 /**
  * @brief Queue containing generic data.
  * @param dataSize Size in bytes of a queue element.
  */
 typedef struct Queue {
-	UInt size; ///< Count elements in the queue.
 	size_t dataSize; ///< Size in bytes of a queue element.
-	QueueCell* front; ///< Pointer to the next dequeued element.
-	QueueCell* back; ///< Pointer to the last enqueued element.
+	Vector* array; ///< Internal vector representation
 } Queue;
 
 /**
