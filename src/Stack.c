@@ -6,9 +6,8 @@
 
 void _stack_init(Stack* stack, size_t dataSize)
 {
-	stack->size = 0;
 	stack->dataSize = dataSize;
-	stack->top = NULL;
+	_vector_init(stack->array, dataSize);
 }
 
 Stack* _stack_new(size_t dataSize)
@@ -20,61 +19,41 @@ Stack* _stack_new(size_t dataSize)
 
 Stack* stack_copy(Stack* stack)
 {
-	// since a stack is a single-linked list, an auxiliary storage is required
-	void** tmpStorage = (void**) malloc(stack->size * sizeof (void*));
-	StackCell* stackCell = stack->top;
-	for (UInt i = 0; i < stack->size; i++)
-	{
-		tmpStorage[stack->size - 1 - i] = stackCell->data;
-		stackCell = stackCell->previous;
-	}
-	// now transfer tmpStorage contents (pushed in right order) in a new stack
-	Stack* stackCopy = _stack_new(stack->dataSize);
-	for (UInt i = 0; i < stack->size; i++)
-		_stack_push(stackCopy, tmpStorage[i]);
-	free(tmpStorage);
+	Stack* stackCopy = (Stack*) safe_malloc(sizeof (Stack));
+	stackCopy->dataSize = stack->dataSize;
+	Vector* arrayCopy = vector_copy(stack->array);
+	stackCopy->array = arrayCopy;
 	return stackCopy;
 }
 
 Bool stack_empty(Stack* stack)
 {
-	return (stack->size == 0);
+	return vector_empty(stack->array);
 }
 
 UInt stack_size(Stack* stack)
 {
-	return stack->size;
+	return vector_size(stack->array);
 }
 
 void _stack_push(Stack* stack, void* data)
 {
-	StackCell* newStackTop = (StackCell*) safe_malloc(sizeof (StackCell));
-	newStackTop->data = safe_malloc(stack->dataSize);
-	memcpy(newStackTop->data, data, stack->dataSize);
-	newStackTop->previous = stack->top;
-	stack->top = newStackTop;
-	stack->size++;
+	_vector_push(stack->array, data);
 }
 
 void* _stack_top(Stack* stack)
 {
-	return stack->top->data;
+	return _vector_get(stack->array, vector_size(stack->array)-1);
 }
 
 void stack_pop(Stack* stack)
 {
-	StackCell* toTrash = stack->top;
-	stack->top = stack->top->previous;
-	safe_free(toTrash->data);
-	safe_free(toTrash);
-	stack->size--;
+	vector_pop(stack->array);
 }
 
 void stack_clear(Stack* stack)
 {
-	while (stack->size > 0) 
-		stack_pop(stack);
-	_stack_init(stack, stack->dataSize);
+	vector_clear(stack->array);
 }
 
 void stack_destroy(Stack* stack)

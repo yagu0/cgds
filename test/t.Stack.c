@@ -116,7 +116,7 @@ void t_stack_copy() //FTEST
 		stack_push(s, rand() % 42);
 	Stack* sc = stack_copy(s);
 
-	lu_assert_int_eq(s->size, sc->size);
+	lu_assert_int_eq(stack_size(s), stack_size(sc));
 	int a, b;
 	for (int i = 0; i < n; i++)
 	{

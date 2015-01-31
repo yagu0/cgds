@@ -9,22 +9,14 @@
 #include <string.h>
 #include "cgds/types.h"
 #include "cgds/safe_alloc.h"
-
-/**
- * @brief Generic internal stack cell.
- */
-typedef struct StackCell {
-	void* data; ///< Generic data contained in the cell.
-	struct StackCell* previous; ///< Previous cell in the internal single-linked list.
-} StackCell;
+#include "cgds/Vector.h"
 
 /**
  * @brief Stack containing generic data.
  */
 typedef struct Stack {
-	UInt size; ///< Count elements in the stack.
 	size_t dataSize; ///< Size in bytes of a stack element.
-	StackCell* top; ///< Last added element, on top of the stack.
+	Vector* array; ///< Internal data structure: resizeable array.
 } Stack;
 
 /**
