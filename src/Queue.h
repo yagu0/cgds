@@ -9,7 +9,7 @@
 #include <string.h>
 #include "cgds/types.h"
 #include "cgds/safe_alloc.h"
-#include "cgds/Vector.h"
+#include "cgds/List.h"
 
 /**
  * @brief Queue containing generic data.
@@ -17,7 +17,7 @@
  */
 typedef struct Queue {
 	size_t dataSize; ///< Size in bytes of a queue element.
-	Vector* array; ///< Internal vector representation
+	List* list; ///< Internal list representation
 } Queue;
 
 /**

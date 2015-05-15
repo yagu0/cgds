@@ -82,23 +82,6 @@ void vector_pop(Vector* vector)
 		_vector_realloc(vector, vector->capacity >> 1);
 }
 
-void vector_pop_first(Vector* vector)
-{
-	safe_free(vector->datas[0]);
-
-
-	//HACK: next 3 lines move vector head
-	void** nextDatas = vector->datas + 1;
-	safe_free(vector->datas);
-	vector->datas = nextDatas;
-//but memory can then be reallocated : TODO
-
-
-	vector->size--;
-	if (vector->size <= (vector->capacity >> 1))
-		_vector_realloc(vector, vector->capacity >> 1);
-}
-
 void* _vector_get(Vector* vector, UInt index)
 {
 	return vector->datas[index];
