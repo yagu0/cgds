@@ -13,6 +13,7 @@ void _stack_init(Stack* stack, size_t dataSize)
 Stack* _stack_new(size_t dataSize)
 {
 	Stack* stack = (Stack*) safe_malloc(sizeof (Stack));
+	stack->array = _vector_new(dataSize);
 	_stack_init(stack, dataSize);
 	return stack;
 }
@@ -58,6 +59,6 @@ void stack_clear(Stack* stack)
 
 void stack_destroy(Stack* stack)
 {
-	stack_clear(stack);
+	vector_destroy(stack->array);
 	safe_free(stack);
 }

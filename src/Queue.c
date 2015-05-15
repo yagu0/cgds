@@ -13,6 +13,7 @@ void _queue_init(Queue* queue, size_t dataSize)
 Queue* _queue_new(size_t dataSize)
 {
 	Queue* queue = (Queue*) safe_malloc(sizeof (Queue));
+	queue->array = _vector_new(dataSize);
 	_queue_init(queue, dataSize);
 	return queue;
 }
@@ -63,6 +64,6 @@ void queue_clear(Queue* queue)
 
 void queue_destroy(Queue* queue)
 {
-	queue_clear(queue);
+	vector_destroy(queue->array);
 	safe_free(queue);
 }
