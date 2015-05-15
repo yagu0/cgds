@@ -49,12 +49,8 @@ void* _queue_peek(Queue* queue)
 
 void queue_pop(Queue* queue)
 {
-	//remove first vector element and shift its internal array
-	safe_free(queue->array->datas[0]);
-	queue->array->datas++;
-	//NOTE: we remove first element, so capacity decrease too
-	queue->array->size--;
-	queue->array->capacity--;
+	vector_pop_first(queue->array);
+
 }
 
 void queue_clear(Queue* queue)

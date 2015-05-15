@@ -43,7 +43,8 @@ void t_queue_push_pop_basic() //FTEST
 	int n = 10;
 
 	Queue* q = queue_new(double);
-	for (int i = 0; i < n; i++) queue_push(q, (double) i);
+	for (int i = 0; i < n; i++) 
+		queue_push(q, (double) i);
 	// iterate and check values
 	double ckValue = 0.0;
 	while (!queue_empty(q))

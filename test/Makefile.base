@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -std=gnu99
+CFLAGS = -g -std=gnu99 -Wno-implicit-function-declaration
 LDFLAGS = -L../src/obj -lcgds
 INCLUDES = -I.. -I../src
 TARGET = testcgds

@@ -82,6 +82,15 @@ void vector_pop(Vector* vector)
 		_vector_realloc(vector, vector->capacity >> 1);
 }
 
+void vector_pop_first(Vector* vector)
+{
+	safe_free(vector->datas[0]);
+	vector->datas++;
+	vector->size--;
+	if (vector_size(vector) <= (vector->capacity >> 1))
+		_vector_realloc(vector, vector->capacity >> 1);
+}
+
 void* _vector_get(Vector* vector, UInt index)
 {
 	return vector->datas[index];

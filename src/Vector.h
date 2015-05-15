@@ -106,6 +106,13 @@ void vector_pop(
 );
 
 /**
+ * @brief Remove the first element.
+ */
+void vector_pop_first(
+	Vector* vector ///< "this" pointer.
+);
+
+/**
  * @brief Get the element at given index.
  */
 void* _vector_get(

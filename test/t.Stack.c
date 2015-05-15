@@ -44,7 +44,8 @@ void t_stack_push_pop_basic() //FTEST
 	int n = 10;
 
 	Stack* s = stack_new(double);
-	for (int i = 0; i < n; i++) stack_push(s, (double) i);
+	for (int i = 0; i < n; i++) 
+		stack_push(s, (double) i);
 	// iterate and check values
 	double ckValue = n - 1;
 	while (!stack_empty(s))
