@@ -43,7 +43,7 @@ void _queue_push(Queue* queue, void* data)
 
 void* _queue_peek(Queue* queue)
 {
-	return vector_get(queue->array, 0);
+	return _vector_get(queue->array, 0);
 }
 
 void queue_pop(Queue* queue)

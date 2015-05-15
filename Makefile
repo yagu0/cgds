@@ -5,18 +5,18 @@ LIBRARY = libcgds.so
 INSTALL_PREFIX = /usr/local
 
 src:
-	cd src && make && cd ..
+	cd src && $(MAKE) && cd ..
 
 test:
-	cd test && make && cd ..
+	cd test && $(MAKE) && cd ..
 
 doc:
-	cd doc && make && cd ..
+	cd doc && $(MAKE) && cd ..
 
 clean:
-	cd src && make clean && cd ..
-	cd test && make clean && cd ..
-	cd doc && make clean && cd ..
+	cd src && $(MAKE) clean && cd ..
+	cd test && $(MAKE) clean && cd ..
+	cd doc && $(MAKE) clean && cd ..
 
 install:
 #	if [ ! -e src/obj/libcds.so ]; then make src; fi
