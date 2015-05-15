@@ -3,7 +3,7 @@
 #include "test/helpers.h"
 #include "test/lut.h"
 
-void t_list_clear() //FTEST
+void t_list_clear()
 {
 	List* L = list_new(int);
 
@@ -17,7 +17,7 @@ void t_list_clear() //FTEST
 	list_destroy(L);
 }
 
-void t_list_size() //FTEST
+void t_list_size()
 {
 	List* L = list_new(double);
 
@@ -51,7 +51,7 @@ void t_list_size() //FTEST
 	list_destroy(L);
 }
 
-void t_list_push_pop_basic() //FTEST
+void t_list_push_pop_basic()
 {
 	int n = 10;
 
@@ -84,7 +84,7 @@ void t_list_push_pop_basic() //FTEST
 	listI_destroy(li);
 }
 
-void t_list_push_pop_evolved() //FTEST
+void t_list_push_pop_evolved()
 {
 	int n = 10;
 
@@ -134,7 +134,7 @@ void t_list_push_pop_evolved() //FTEST
 	list_destroy(L);
 }
 
-void t_list_copy() //FTEST
+void t_list_copy()
 {
 	int n = 10;
 

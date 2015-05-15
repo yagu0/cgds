@@ -3,7 +3,7 @@
 #include "test/helpers.h"
 #include "test/lut.h"
 
-void t_priorityqueue_clear() //FTEST
+void t_priorityqueue_clear()
 {
 	PriorityQueue* pq = priorityqueue_new(int, MIN_T, 2);
 
@@ -19,7 +19,7 @@ void t_priorityqueue_clear() //FTEST
 	priorityqueue_destroy(pq);
 }
 
-void t_priorityqueue_size() //FTEST
+void t_priorityqueue_size()
 {
 	PriorityQueue* pq = priorityqueue_new(double, MAX_T, 3);
 
@@ -40,7 +40,7 @@ void t_priorityqueue_size() //FTEST
 	priorityqueue_destroy(pq);
 }
 
-void t_priorityqueue_push_pop_basic() //FTEST
+void t_priorityqueue_push_pop_basic()
 {
 	PriorityQueue* pq = priorityqueue_new(int, MIN_T, 3);
 
@@ -101,7 +101,7 @@ void t_priorityqueue_push_pop_basic() //FTEST
 	priorityqueue_destroy(pq);
 }
 
-void t_priorityqueue_push_pop_evolved() //FTEST
+void t_priorityqueue_push_pop_evolved()
 {
 	int n = 10;
 
@@ -148,7 +148,7 @@ void t_priorityqueue_push_pop_evolved() //FTEST
 	priorityqueue_destroy(pq);
 }
 
-void t_priorityqueue_copy() //FTEST
+void t_priorityqueue_copy()
 {
 	int n = 10;
 

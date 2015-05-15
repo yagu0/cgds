@@ -3,7 +3,7 @@
 #include "test/helpers.h"
 #include "test/lut.h"
 
-void t_heap_clear() //FTEST
+void t_heap_clear()
 {
 	Heap* h = heap_new(int, MIN_T, 2);
 
@@ -19,7 +19,7 @@ void t_heap_clear() //FTEST
 	heap_destroy(h);
 }
 
-void t_heap_size() //FTEST
+void t_heap_size()
 {
 	Heap* h = heap_new(double, MAX_T, 3);
 
@@ -40,7 +40,7 @@ void t_heap_size() //FTEST
 	heap_destroy(h);
 }
 
-void t_heap_push_pop_basic() //FTEST
+void t_heap_push_pop_basic()
 {
 	Heap* h = heap_new(int, MIN_T, 3);
 
@@ -101,7 +101,7 @@ void t_heap_push_pop_basic() //FTEST
 	heap_destroy(h);
 }
 
-void t_heap_push_pop_evolved() //FTEST
+void t_heap_push_pop_evolved()
 {
 	int n = 10;
 
@@ -148,7 +148,7 @@ void t_heap_push_pop_evolved() //FTEST
 	heap_destroy(h);
 }
 
-void t_heap_copy() //FTEST
+void t_heap_copy()
 {
 	int n = 10;
 

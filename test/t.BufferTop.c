@@ -3,7 +3,7 @@
 #include "test/helpers.h"
 #include "test/lut.h"
 
-void t_buffertop_clear() //FTEST
+void t_buffertop_clear()
 {
 	BufferTop* bt = buffertop_new(int, 10, MIN_T, 2);
 
@@ -19,7 +19,7 @@ void t_buffertop_clear() //FTEST
 	buffertop_destroy(bt);
 }
 
-void t_buffertop_size() //FTEST
+void t_buffertop_size()
 {
 	BufferTop* bt = buffertop_new(double, 10, MAX_T, 3);
 
@@ -55,7 +55,7 @@ void t_buffertop_size() //FTEST
 	buffertop_destroy(bt);
 }
 
-void t_buffertop_push_pop_basic() //FTEST
+void t_buffertop_push_pop_basic()
 {
 	BufferTop* bt = buffertop_new(int, 5, MIN_T, 3);
 
@@ -89,7 +89,7 @@ void t_buffertop_push_pop_basic() //FTEST
 	buffertop_destroy(bt);
 }
 
-void t_buffertop_push_pop_evolved() //FTEST
+void t_buffertop_push_pop_evolved()
 {
 	int n = 10;
 
@@ -136,7 +136,7 @@ void t_buffertop_push_pop_evolved() //FTEST
 	buffertop_destroy(bt);
 }
 
-void t_buffertop_copy() //FTEST
+void t_buffertop_copy()
 {
 	int n = 10;
 

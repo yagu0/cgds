@@ -3,7 +3,7 @@
 #include "test/helpers.h"
 #include "test/lut.h"
 
-void t_vector_clear() //FTEST
+void t_vector_clear()
 {
 	Vector* v = vector_new(int);
 	lu_assert(vector_empty(v));
@@ -25,7 +25,7 @@ void t_vector_clear() //FTEST
 	vector_destroy(v);
 }
 
-void t_vector_size() //FTEST
+void t_vector_size()
 {
 	Vector* v = vector_new(int);
 	lu_assert(vector_empty(v));
@@ -47,7 +47,7 @@ void t_vector_size() //FTEST
 	vector_destroy(v);
 }
 
-void t_vector_push_pop_basic() //FTEST
+void t_vector_push_pop_basic()
 {
 	int n = 10;
 
@@ -80,7 +80,7 @@ void t_vector_push_pop_basic() //FTEST
 	vectorI_destroy(vi);
 }
 
-void t_vector_push_pop_evolved() //FTEST
+void t_vector_push_pop_evolved()
 {
 	int n = 10;
 
@@ -126,7 +126,7 @@ void t_vector_push_pop_evolved() //FTEST
 	vector_destroy(v);
 }
 
-void t_vector_copy() //FTEST
+void t_vector_copy()
 {
 	int n = 10;
 

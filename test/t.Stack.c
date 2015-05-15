@@ -3,7 +3,7 @@
 #include "test/helpers.h"
 #include "test/lut.h"
 
-void t_stack_clear() //FTEST
+void t_stack_clear()
 {
 	Stack* s = stack_new(int);
 
@@ -17,7 +17,7 @@ void t_stack_clear() //FTEST
 	stack_destroy(s);
 }
 
-void t_stack_size() //FTEST
+void t_stack_size()
 {
 	Stack* s = stack_new(int);
 
@@ -38,7 +38,7 @@ void t_stack_size() //FTEST
 	stack_destroy(s);
 }
 
-void t_stack_push_pop_basic() //FTEST
+void t_stack_push_pop_basic()
 {
 
 	int n = 10;
@@ -61,7 +61,7 @@ void t_stack_push_pop_basic() //FTEST
 	stack_destroy(s);
 }
 
-void t_stack_push_pop_evolved() //FTEST
+void t_stack_push_pop_evolved()
 {
 	Stack* s = stack_new(StructTest1);
 
@@ -108,7 +108,7 @@ void t_stack_push_pop_evolved() //FTEST
 	stack_destroy(s);
 }
 
-void t_stack_copy() //FTEST
+void t_stack_copy()
 {
 	int n = 10;
 

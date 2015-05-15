@@ -3,7 +3,7 @@
 #include "test/helpers.h"
 #include "test/lut.h"
 
-void t_tree_clear() //FTEST
+void t_tree_clear()
 {
 	Tree* t = tree_new(int);
 
@@ -24,7 +24,7 @@ void t_tree_clear() //FTEST
 	tree_destroy(t);
 }
 
-void t_tree_size() //FTEST
+void t_tree_size()
 {
 	Tree* t = tree_new(int);
 
@@ -47,7 +47,7 @@ void t_tree_size() //FTEST
 	tree_destroy(t);
 }
 
-void t_tree_add_remove() //FTEST
+void t_tree_add_remove()
 {
 	Tree* t = tree_new(int);
 
@@ -74,7 +74,7 @@ void t_tree_add_remove() //FTEST
 	tree_destroy(t);
 }
 
-void t_tree_iterate() //FTEST
+void t_tree_iterate()
 {
 	Tree* t = tree_new(int);
 
@@ -103,7 +103,7 @@ void t_tree_iterate() //FTEST
 	tree_destroy(t);
 }
 
-void t_tree_copy() //FTEST
+void t_tree_copy()
 {
 	Tree* t = tree_new(int);
 

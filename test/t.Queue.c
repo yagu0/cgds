@@ -3,7 +3,7 @@
 #include "test/helpers.h"
 #include "test/lut.h"
 
-void t_queue_clear() //FTEST
+void t_queue_clear()
 {
 	Queue* q = queue_new(int);
 
@@ -17,7 +17,7 @@ void t_queue_clear() //FTEST
 	queue_destroy(q);
 }
 
-void t_queue_size() //FTEST
+void t_queue_size()
 {
 	Queue* q = queue_new(int);
 
@@ -38,7 +38,7 @@ void t_queue_size() //FTEST
 	queue_destroy(q);
 }
 
-void t_queue_push_pop_basic() //FTEST
+void t_queue_push_pop_basic()
 {
 	int n = 10;
 
@@ -60,7 +60,7 @@ void t_queue_push_pop_basic() //FTEST
 	queue_destroy(q);
 }
 
-void t_queue_push_pop_evolved() //FTEST
+void t_queue_push_pop_evolved()
 {
 	int n = 10;
 
@@ -107,7 +107,7 @@ void t_queue_push_pop_evolved() //FTEST
 	queue_destroy(q);
 }
 
-void t_queue_copy() //FTEST
+void t_queue_copy()
 {
 	int n = 10;
 
