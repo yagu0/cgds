@@ -1,6 +1,6 @@
-# cgds: C Generic Data Structures library</h1>
+# cgds: C Generic Data Structures library
 
-Various data structures, from stack to tree, which can contain any data type.</p>
+Various data structures, from stack to tree, which can contain any data type.
 
 ## Example
 
@@ -11,4 +11,4 @@ Various data structures, from stack to tree, which can contain any data type.</p
 	vector_set(v, 0, 0); //v[0] now contains 0
 	vector_destroy(v);</code></pre>
 
-More examples in the unit tests under test/ folder.</p>
+More examples in the unit tests under test/ folder.
