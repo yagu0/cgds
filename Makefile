@@ -1,6 +1,3 @@
-#http://stackoverflow.com/questions/6273608/how-to-pass-argument-to-makefile-from-command-line
-#to reconstruct dependency rules or not
-
 LIBRARY = libcgds.so
 INSTALL_PREFIX = /usr/local
 
@@ -19,7 +16,6 @@ clean:
 	cd doc && $(MAKE) clean && cd ..
 
 install:
-#	if [ ! -e src/obj/libcds.so ]; then make src; fi
 	cp src/obj/$(LIBRARY) $(INSTALL_PREFIX)/lib/
 	mkdir -p $(INSTALL_PREFIX)/include/cgds
 	cp src/*.h $(INSTALL_PREFIX)/include/cgds/
