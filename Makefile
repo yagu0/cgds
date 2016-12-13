@@ -16,6 +16,7 @@ clean:
 	cd doc && $(MAKE) clean && cd ..
 
 install:
+	mkdir -p $(INSTALL_PREFIX)/lib/
 	cp src/obj/$(LIBRARY) $(INSTALL_PREFIX)/lib/
 	mkdir -p $(INSTALL_PREFIX)/include/cgds
 	cp src/*.h $(INSTALL_PREFIX)/include/cgds/
