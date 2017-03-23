@@ -4,7 +4,7 @@ Various data structures, from stack to tree, which can contain any data type.
 
 ## Example
 
-	Vector v = vector_new(int);
+	Vector* v = vector_new(int);
 	vector_push(v, 32);
 	vector_push(v, 42);
 	int a; vector_get(v, 1, a); //a now contains 42
