@@ -1,5 +1,4 @@
 #/bin/bash
-#TODO: dispatch in several files and run in parallel ?!
 
 #initialize main.c
 printf '#include <stdlib.h>\n' > main.c

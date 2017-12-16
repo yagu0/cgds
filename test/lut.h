@@ -8,7 +8,7 @@
 #define lu_assert(expr) \
 	lu_assert_msg(expr, "");
 
-/* OP may be any comparion operator. */
+/* OP may be any comparison operator. */
 
 #define _lu_assert_int(X, OP, Y) do { \
 	int _lu_x = (X); \
@@ -33,4 +33,3 @@
 #define lu_assert_dbl_le(X, Y) _lu_assert_dbl(X, <=, Y)
 #define lu_assert_dbl_gt(X, Y) _lu_assert_dbl(X, >, Y)
 #define lu_assert_dbl_ge(X, Y) _lu_assert_dbl(X, >=, Y)
-
