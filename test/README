@@ -1,4 +1,4 @@
 Testing procedure (assuming src/Makefile already run):
   1) ./makeMain.sh
-	2) make
-	3) ./test
+  2) make
+  3) ./test
