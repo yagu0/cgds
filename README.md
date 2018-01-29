@@ -2,6 +2,12 @@
 
 Various data structures, from stack to tree, which can contain any data type.
 
+## Installation
+
+	make [src]
+	make install
+'src' is Makefile default target.
+
 ## Example
 
 	Vector* v = vector_new(int);

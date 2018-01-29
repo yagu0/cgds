@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "cgds/BufferTop.h"
-#include "test/helpers.h"
-#include "test/lut.h"
+#include "helpers.h"
+#include "lut.h"
 
 void t_buffertop_clear()
 {

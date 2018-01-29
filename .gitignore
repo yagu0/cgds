@@ -1,0 +1,5 @@
+*.o
+/src/obj/*.so
+/test/test
+/doc/html/
+/doc/latex/

@@ -1,11 +1,13 @@
 LIBRARY = libcgds.so
 INSTALL_PREFIX = /usr/local
 
+all: src
+
 src:
 	cd src && $(MAKE) && cd ..
 
 test:
-	cd test && $(MAKE) && cd ..
+	cd test && ./makeMain.sh && $(MAKE) && cd ..
 
 doc:
 	cd doc && $(MAKE) && cd ..

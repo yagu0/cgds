@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "cgds/Tree.h"
-#include "test/helpers.h"
-#include "test/lut.h"
+#include "helpers.h"
+#include "lut.h"
 
 void t_tree_clear()
 {
