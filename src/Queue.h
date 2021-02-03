@@ -16,8 +16,8 @@
  * @param dataSize Size in bytes of a queue element.
  */
 typedef struct Queue {
-	size_t dataSize; ///< Size in bytes of a queue element.
-	List* list; ///< Internal list representation
+  size_t dataSize; ///< Size in bytes of a queue element.
+  List* list; ///< Internal list representation
 } Queue;
 
 /**
@@ -26,15 +26,15 @@ typedef struct Queue {
  * @param dataSize Size in bytes of a queue element.
  */
 void _queue_init(
-	Queue* queue, ///< "this" pointer.
-	size_t dataSize ///< Size in bytes of a queue element.
+  Queue* queue, ///< "this" pointer.
+  size_t dataSize ///< Size in bytes of a queue element.
 );
 
 /**
  * @brief Return an allocated and initialized queue.
  */
 Queue* _queue_new(
-	size_t dataSize ///< Size in bytes of a queue element.
+  size_t dataSize ///< Size in bytes of a queue element.
 );
 
 /**
@@ -44,35 +44,37 @@ Queue* _queue_new(
  * Usage: Queue* queue_new(<Type> type)
  */
 #define queue_new(type) \
-	_queue_new(sizeof(type))
+{ \
+  _queue_new(sizeof(type)); \
+}
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).
  */
 Queue* queue_copy(
-	Queue* queue ///< "this" pointer.
+  Queue* queue ///< "this" pointer.
 );
 
 /**
  * @brief Check if the queue is empty.
  */
 bool queue_empty(
-	Queue* queue ///< "this" pointer.
+  Queue* queue ///< "this" pointer.
 );
 
 /**
  * @brief Return size of the current queue.
  */
 UInt queue_size(
-	Queue* queue ///< "this" pointer.
+  Queue* queue ///< "this" pointer.
 );
 
 /**
  * @brief Add something at the end of the queue.
  */
 void _queue_push(
-	Queue* queue, ///< "this" pointer.
-	void* data ///< Data to be pushed.
+  Queue* queue, ///< "this" pointer.
+  void* data ///< Data to be pushed.
 );
 
 /**
@@ -84,15 +86,15 @@ void _queue_push(
  */
 #define queue_push(queue, data) \
 { \
-	typeof((data)) tmp = data; \
-	_queue_push(queue, &tmp); \
+  typeof((data)) tmp = data; \
+  _queue_push(queue, &tmp); \
 }
 
 /**
  * @brief Return what is at the beginning of the queue.
  */
 void* _queue_peek(
-	Queue* queue ///< "this" pointer.
+  Queue* queue ///< "this" pointer.
 );
 
 /**
@@ -104,29 +106,29 @@ void* _queue_peek(
  */
 #define queue_peek(queue, data) \
 { \
-	void* pData = _queue_peek(queue); \
-	data = *((typeof(&data))pData); \
+  void* pData = _queue_peek(queue); \
+  data = *((typeof(&data))pData); \
 }
 
 /**
  * @brief Remove the beginning of the queue.
  */
 void queue_pop(
-	Queue* queue ///< "this" pointer.
+  Queue* queue ///< "this" pointer.
 );
 
 /**
  * @brief Clear the entire queue.
  */
 void queue_clear(
-	Queue* queue ///< "this" pointer.
+  Queue* queue ///< "this" pointer.
 );
 
 /**
  * @brief Destroy the queue: clear it, and free 'queue' pointer.
  */
 void queue_destroy(
-	Queue* queue ///< "this" pointer.
+  Queue* queue ///< "this" pointer.
 );
 
 #endif

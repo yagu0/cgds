@@ -29,16 +29,16 @@ typedef double Real;
  * @brief Enumeration for the type of buffer or heap.
  */
 typedef enum {
-	MIN_T = 0, ///< Minimum element first.
-	MAX_T = 1 ///< Maximum element first.
+  MIN_T = 0, ///< Minimum element first.
+  MAX_T = 1 ///< Maximum element first.
 } OrderType;
 
 /**
  * @brief Generic item-value type; 'value' may correspond e.g. to distance.
  */
 typedef struct ItemValue {
-	void* item; ///< Pointer to an item of any type.
-	Real value; ///< Value associated with the item.
+  void* item; ///< Pointer to an item of any type.
+  Real value; ///< Value associated with the item.
 } ItemValue;
 
 #endif

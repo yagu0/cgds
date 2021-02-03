@@ -38,11 +38,11 @@ int main(int argc, char** argv)
 	t_buffertop_copy();
 
 	//file ./t.HashTable.c :
-	//t_hashtable_clear();
-	//t_hashtable_size();
+	t_hashtable_clear();
+	t_hashtable_size();
 	t_hashtable_set_remove_basic();
-	//t_hashtable_getnull_modify();
-	//t_hashtable_copy();
+	t_hashtable_getnull_modify();
+	t_hashtable_copy();
 
 	//file ./t.Stack.c :
 	t_stack_clear();

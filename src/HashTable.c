@@ -6,28 +6,28 @@
 
 void _hashtable_init(HashTable* hashTable, size_t dataSize, size_t hashSize)
 {
-	hashTable->hashSize = hashSize;
+  hashTable->hashSize = hashSize;
   hashTable->dataSize = dataSize;
-	hashTable->head = safe_malloc(hashSize * sizeof(HashCell*));
-	for (UInt i = 0; i < hashSize; i++)
+  hashTable->head = safe_malloc(hashSize * sizeof(HashCell*));
+  for (UInt i = 0; i < hashSize; i++)
     hashTable->head[i] = NULL;
   hashTable->size = 0;
 }
 
 HashTable* _hashtable_new(size_t dataSize, size_t hashSize)
 {
-	HashTable* hashTable = (HashTable*) safe_malloc(sizeof (HashTable));
-	_hashtable_init(hashTable, dataSize, hashSize);
-	return hashTable;
+  HashTable* hashTable = (HashTable*) safe_malloc(sizeof (HashTable));
+  _hashtable_init(hashTable, dataSize, hashSize);
+  return hashTable;
 }
 
 HashTable* hashtable_copy(HashTable* hashTable)
 {
-	HashTable* hashTableCopy =
+  HashTable* hashTableCopy =
     _hashtable_new(hashTable->dataSize, hashTable->hashSize);
-	hashTableCopy->size = hashTable->size;
+  hashTableCopy->size = hashTable->size;
   for (UInt i = 0; i < hashTable->hashSize; i++)
-	{
+  {
     HashCell *cell = hashTable->head[i],
              *cellCopy = hashTableCopy->head[i],
              *prev = NULL;
@@ -35,28 +35,28 @@ HashTable* hashtable_copy(HashTable* hashTable)
     {
       // cellCopy == NULL (from empty list)
       cellCopy = (HashCell*) safe_malloc(sizeof(HashCell*));
-		  cellCopy->key = (char*) safe_malloc(strlen(cell->key) + 1);
+      cellCopy->key = (char*) safe_malloc(strlen(cell->key) + 1);
       strcpy(cellCopy->key, cell->key);
-		  cellCopy->data = safe_malloc(hashTable->dataSize);
-		  memcpy(cellCopy->data, cell->data, hashTable->dataSize);
+      cellCopy->data = safe_malloc(hashTable->dataSize);
+      memcpy(cellCopy->data, cell->data, hashTable->dataSize);
       if (prev == NULL) hashTableCopy->head[i] = cellCopy;
       else prev->next = cellCopy;
       prev = cellCopy;
       cell = cell->next;
     }
     if (cellCopy != NULL) cellCopy->next = NULL;
-	}
-	return hashTableCopy;
+  }
+  return hashTableCopy;
 }
 
 bool hashtable_empty(HashTable* hashTable)
 {
-	return (hashTable->size == 0);
+  return (hashTable->size == 0);
 }
 
 UInt hashtable_size(HashTable* hashTable)
 {
-	return hashTable->size;
+  return hashTable->size;
 }
 
 // Function (string) key --> (integer) hash [internal usage]
@@ -139,7 +139,7 @@ void hashtable_delete(HashTable* hashTable, char* key)
 
 void hashtable_clear(HashTable* hashTable)
 {
-	for (UInt i = 0; i < hashTable->hashSize; i++)
+  for (UInt i = 0; i < hashTable->hashSize; i++)
   {
     HashCell* cell = hashTable->head[i];
     while (cell != NULL)
@@ -152,12 +152,12 @@ void hashtable_clear(HashTable* hashTable)
     }
     hashTable->head[i] = NULL;
   }
-	hashTable->size = 0;
+  hashTable->size = 0;
 }
 
 void hashtable_destroy(HashTable* hashTable)
 {
-	hashtable_clear(hashTable);
-	safe_free(hashTable->head);
+  hashtable_clear(hashTable);
+  safe_free(hashTable->head);
   safe_free(hashTable);
 }

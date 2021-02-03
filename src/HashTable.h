@@ -15,9 +15,9 @@
  * @brief Cell of a dictionary.
  */
 typedef struct HashCell {
-	char* key; ///< Key (as a string).
+  char* key; ///< Key (as a string).
   void* data; ///< Generic data contained in this cell.
-	struct HashCell* next; ///< Pointer to next cell in the list.
+  struct HashCell* next; ///< Pointer to next cell in the list.
 } HashCell;
 
 /**
@@ -25,17 +25,17 @@ typedef struct HashCell {
  */
 typedef struct HashTable {
   UInt size; ///< Count elements in the dictionary.
-	size_t dataSize; ///< Size of a dict cell element in bytes.
+  size_t dataSize; ///< Size of a dict cell element in bytes.
   size_t hashSize; ///< (Maximum) Number of stored hash keys.
-	HashCell** head; ///< Pointers to the first cell in a list.
+  HashCell** head; ///< Pointers to the first cell in a list.
 } HashTable;
 
 /**
  * @brief Initialize an empty dictionary.
  */
 void _hashtable_init(
-	HashTable* hashTable, ///< "this" pointer.
-	size_t dataSize, ///< Size in bytes of a dictionary element.
+  HashTable* hashTable, ///< "this" pointer.
+  size_t dataSize, ///< Size in bytes of a dictionary element.
   size_t hashSize ///< (Maximum) Number of stored hash keys.
 );
 
@@ -43,7 +43,7 @@ void _hashtable_init(
  * @brief Return an allocated and initialized dictionary.
  */
 HashTable* _hashtable_new(
-	size_t dataSize, ///< Size in bytes of a dictionary element.
+  size_t dataSize, ///< Size in bytes of a dictionary element.
   size_t hashSize ///< (Maximum) Number of stored hash keys.
 );
 
@@ -54,35 +54,37 @@ HashTable* _hashtable_new(
  * Usage: HashTable* hashtable_new(<Type> type, UInt hash_size)
  */
 #define hashtable_new(type, hsize) \
-	_hashtable_new(sizeof(type), hsize)
+{ \
+  _hashtable_new(sizeof(type), hsize); \
+}
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).
  */
 HashTable* hashtable_copy(
-	HashTable* hashTable ///< "this" pointer.
+  HashTable* hashTable ///< "this" pointer.
 );
 
 /**
  * @brief Check if the dictionary is empty.
  */
 bool hashtable_empty(
-	HashTable* hastTable ///< "this" pointer.
+  HashTable* hastTable ///< "this" pointer.
 );
 
 /**
  * @brief Return current size.
  */
 UInt hashtable_size(
-	HashTable* hastTable ///< "this" pointer.
+  HashTable* hastTable ///< "this" pointer.
 );
 
 /**
  * @brief Lookup element of given key.
  */
 void* _hashtable_get(
-	HashTable* hashTable, ///< "this" pointer.
-	char* key ///< Key of the element to retrieve.
+  HashTable* hashTable, ///< "this" pointer.
+  char* key ///< Key of the element to retrieve.
 );
 
 /**
@@ -95,17 +97,17 @@ void* _hashtable_get(
  */
 #define hashtable_get(hashTable, key, data) \
 { \
-	void* pData = _hashtable_get(hashTable, key); \
-	data = *((typeof(&data))pData); \
+  void* pData = _hashtable_get(hashTable, key); \
+  data = *((typeof(&data))pData); \
 }
 
 /**
  * @brief Add the entry (key, value) to dictionary.
  */
 void _hashtable_set(
-	HashTable* hashTable, ///< "this" pointer.
-	char* key, ///< Key of the element to add or modify.
-	void* data ///< Pointer to new data at given key.
+  HashTable* hashTable, ///< "this" pointer.
+  char* key, ///< Key of the element to add or modify.
+  void* data ///< Pointer to new data at given key.
 );
 
 /**
@@ -118,15 +120,15 @@ void _hashtable_set(
  */
 #define hashtable_set(hashTable, key, data) \
 { \
-	typeof((data)) tmp = data; \
-	_hashtable_set(hashTable, key, &tmp); \
+  typeof((data)) tmp = data; \
+  _hashtable_set(hashTable, key, &tmp); \
 }
 
 /**
  * @brief Remove the given key (+ associated value).
  */
 void hashtable_delete(
-	HashTable* hashTable, ///< "this" pointer.
+  HashTable* hashTable, ///< "this" pointer.
   char* key ///< Key of the element to delete.
 );
 
@@ -134,14 +136,14 @@ void hashtable_delete(
  * @brief Clear the entire dictionary.
  */
 void hashtable_clear(
-	HashTable* hashTable ///< "this" pointer.
+  HashTable* hashTable ///< "this" pointer.
 );
 
 /**
  * @brief Destroy the dictionary: clear it, and free hashes array.
  */
 void hashtable_destroy(
-	HashTable* hashTable ///< "this" pointer.
+  HashTable* hashTable ///< "this" pointer.
 );
 
 #endif

@@ -1,10 +1,12 @@
-all: latex/refman.pdf
+all: html latex
 
-latex/refman.pdf:
+html:
 	doxygen Doxyfile
+
+latex: html
 	cd latex && pdflatex refman.tex && pdflatex refman.tex && cd ..
 
 clean:
 	rm -rf html latex
 
-.PHONY: latex/refman.pdf clean
+.PHONY: latex html clean
