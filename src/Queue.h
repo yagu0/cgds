@@ -30,24 +30,24 @@ void _queue_init(
 	size_t dataSize ///< Size in bytes of a queue element.
 );
 
-/** 
+/**
  * @brief Return an allocated and initialized queue.
  */
 Queue* _queue_new(
 	size_t dataSize ///< Size in bytes of a queue element.
 );
 
-/** 
+/**
  * @brief Return an allocated and initialized queue.
  * @param type Type of a queue element (int, char*, ...).
- * 
+ *
  * Usage: Queue* queue_new(<Type> type)
  */
 #define queue_new(type) \
 	_queue_new(sizeof(type))
 
 /**
- * @brief Copy constructor (works well if items do not have allocated sub-pointers).
+ * @brief Copy constructor (shallow copy, ok for basic types).
  */
 Queue* queue_copy(
 	Queue* queue ///< "this" pointer.
@@ -56,7 +56,7 @@ Queue* queue_copy(
 /**
  * @brief Check if the queue is empty.
  */
-Bool queue_empty(
+bool queue_empty(
 	Queue* queue ///< "this" pointer.
 );
 
@@ -79,7 +79,7 @@ void _queue_push(
  * @brief Add something at the end of the queue.
  * @param queue "this" pointer
  * @param data Data to be pushed.
- * 
+ *
  * Usage: void queue_push(Queue* queue, void data)
  */
 #define queue_push(queue, data) \
@@ -99,7 +99,7 @@ void* _queue_peek(
  * @brief Return what is at the beginning of the queue.
  * @param queue "this" pointer.
  * @param data Data to be assigned.
- * 
+ *
  * Usage: void queue_peek(Queue* queue, void data)
  */
 #define queue_peek(queue, data) \

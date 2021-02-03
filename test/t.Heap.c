@@ -7,7 +7,7 @@ void t_heap_clear()
 {
 	Heap* h = heap_new(int, MIN_T, 2);
 
-	// NOTE: items with same priorities are supported; 
+	// NOTE: items with same priorities are supported;
 	// since it is unused in this test, we arbitrarily choose 0.0
 	heap_insert(h, 0, 0.0);
 	heap_insert(h, 0, 0.0);

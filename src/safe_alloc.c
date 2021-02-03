@@ -39,6 +39,6 @@ void* safe_realloc(void* ptr, size_t size)
 
 void safe_free(void* ptr)
 {
-	if (ptr != NULL) 
+	if (ptr != NULL)
 		free(ptr);
 }

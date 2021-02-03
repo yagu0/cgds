@@ -35,7 +35,7 @@ List* list_copy(List* list)
 	return listCopy;
 }
 
-Bool list_empty(List* list)
+bool list_empty(List* list)
 {
 	return (list->size == 0);
 }
@@ -115,13 +115,13 @@ void _list_insert_back(List* list, void* data)
 
 void list_remove(List* list, ListCell* listCell)
 {
-	if (listCell->prev != NULL) 
+	if (listCell->prev != NULL)
 		listCell->prev->next = listCell->next;
-	else 
+	else
 		list->head = listCell->next;
-	if (listCell->next != NULL) 
+	if (listCell->next != NULL)
 		listCell->next->prev = listCell->prev;
-	else 
+	else
 		list->tail = listCell->prev;
 	safe_free(listCell->data);
 	safe_free(listCell);
@@ -180,7 +180,7 @@ void listI_reset_tail(ListIterator* listI)
 	listI->current = listI->list->tail;
 }
 
-Bool listI_has_data(ListIterator* listI)
+bool listI_has_data(ListIterator* listI)
 {
 	return (listI->current != NULL);
 }

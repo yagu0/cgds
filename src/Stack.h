@@ -27,24 +27,24 @@ void _stack_init(
 	size_t dataSize ///< Size in bytes of a stack element.
 );
 
-/** 
+/**
  * @brief Return an allocated and initialized stack.
  */
 Stack* _stack_new(
 	size_t dataSize ///< Size in bytes of a stack element.
 );
 
-/** 
+/**
  * @brief Return an allocated and initialized stack.
  * @param type Type of a stack element (int, char*, ...).
- * 
+ *
  * Usage: Stack* stack_new(<Type> type)
  */
 #define stack_new(type) \
 	_stack_new(sizeof(type))
 
 /**
- * @brief Copy constructor (works well if items do not have allocated sub-pointers).
+ * @brief Copy constructor (shallow copy, ok for basic types).
  */
 Stack* stack_copy(
 	Stack* stack ///< "this" pointer.
@@ -53,7 +53,7 @@ Stack* stack_copy(
 /**
  * @brief Check if the stack is empty.
  */
-Bool stack_empty(
+bool stack_empty(
 	Stack* stack ///< "this" pointer.
 );
 
@@ -76,7 +76,7 @@ void _stack_push(
  * @brief Add something on top of the stack.
  * @param stack "this" pointer.
  * @param data Data to be added.
- * 
+ *
  * Usage: void stack_push(Stack* stack, void data)
  */
 #define stack_push(stack, data) \
@@ -96,7 +96,7 @@ void* _stack_top(
  * @brief Return what is on top of the stack.
  * @param stack "this" pointer.
  * @param data Data to be assigned.
- * 
+ *
  * Usage: void stack_top(Stack* stack, void data)
  */
 #define stack_top(stack, data) \

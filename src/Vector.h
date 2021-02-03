@@ -42,14 +42,14 @@ Vector* _vector_new(
 /**
  * @brief Return an allocated and initialized vector.
  * @param type Type of a vector element (int, char*, ...).
- * 
+ *
  * Usage: Vector* vector_new(<Type> type)
  */
 #define vector_new(type) \
 	_vector_new(sizeof(type))
 
 /**
- * @brief Copy constructor (works well if items do not have allocated sub-pointers).
+ * @brief Copy constructor (shallow copy, ok for basic types).
  */
 Vector* vector_copy(
 	Vector* vector ///< "this" pointer.
@@ -58,7 +58,7 @@ Vector* vector_copy(
 /**
  * @brief Check if the vector is empty.
  */
-Bool vector_empty(
+bool vector_empty(
 	Vector* vector ///< "this" pointer.
 );
 
@@ -89,7 +89,7 @@ void _vector_push(
  * @brief Add data at the end.
  * @param vector "this" pointer.
  * @param data Data to be added.
- * 
+ *
  * Usage: void vector_push(Vector* vector, void data)
  */
 #define vector_push(vector, data) \
@@ -118,7 +118,7 @@ void* _vector_get(
  * @param vector "this" pointer.
  * @param index Index of the element to retrieve.
  * @param data 'out' variable to contain the result.
- * 
+ *
  * Usage: void vector_get(Vector* vector, size_t index, void data)
  */
 #define vector_get(vector, index, data) \
@@ -141,7 +141,7 @@ void _vector_set(
  * @param vector "this" pointer.
  * @param index Index of the element to be modified.
  * @param data New data at given index.
- * 
+ *
  * Usage: void vector_set(Vector* vector, size_t index, void data)
  */
 #define vector_set(vector, index, data) \
@@ -200,7 +200,7 @@ void vectorI_reset_end(
 /**
  * @brief Tell if there is some data at the current index.
  */
-Bool vectorI_has_data(
+bool vectorI_has_data(
 	VectorIterator* vectorI ///< "this" pointer.
 );
 
@@ -215,7 +215,7 @@ void* _vectorI_get(
  * @brief Get data contained at the current index.
  * @param vectorI "this" pointer.
  * @param data 'out' variable to contain the result.
- * 
+ *
  * Usage: void vectorI_get(VectorIterator* vectorI, void data);
  */
 #define vectorI_get(vectorI, data) \
@@ -236,7 +236,7 @@ void _vectorI_set(
  * @brief Set the element at current index.
  * @param vectorI "this" pointer.
  * @param data Data to be assigned.
- * 
+ *
  * Usage: void vectorI_set(VectorIterator* vectorI, void data)
  */
 #define vectorI_set(vectorI, data) \

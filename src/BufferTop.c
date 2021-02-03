@@ -43,7 +43,7 @@ List* buffertop_2list(BufferTop* bufferTop)
 	return bufferInList;
 }
 
-Bool buffertop_empty(BufferTop* bufferTop)
+bool buffertop_empty(BufferTop* bufferTop)
 {
 	return (heap_size(bufferTop->heap) == 0);
 }

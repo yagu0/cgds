@@ -27,7 +27,7 @@ Queue* queue_copy(Queue* queue)
 	return queueCopy;
 }
 
-Bool queue_empty(Queue* queue)
+bool queue_empty(Queue* queue)
 {
 	return list_empty(queue->list);
 }

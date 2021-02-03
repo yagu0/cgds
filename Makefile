@@ -22,9 +22,11 @@ install:
 	cp src/obj/$(LIBRARY) $(INSTALL_PREFIX)/lib/
 	mkdir -p $(INSTALL_PREFIX)/include/cgds
 	cp src/*.h $(INSTALL_PREFIX)/include/cgds/
+	mv $(INSTALL_PREFIX)/include/cgds/cgds.h $(INSTALL_PREFIX)/include/
 
 uninstall:
 	rm -f ${INSTALL_PREFIX}/lib/${LIBRARY}
+	rm -f ${INSTALL_PREFIX}/include/cgds.h
 	[[ -d ${INSTALL_PREFIX}/include/cgds ]] && rm -rf ${INSTALL_PREFIX}/include/cgds
 
 .PHONY: src test doc clean install uninstall

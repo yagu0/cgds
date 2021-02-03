@@ -88,8 +88,8 @@ void t_vector_push_pop_evolved()
 	StructTest1* st1 = (StructTest1*) malloc(n * sizeof (StructTest1));
 	for (int i = 0; i < n; i++)
 	{
-		st1[i].a = rand() % 42;
-		st1[i].b = (double) rand() / RAND_MAX;
+		st1[i].a = random() % 42;
+		st1[i].b = (double) random() / RAND_MAX;
 		vector_push(v, *(st1 + i));
 	}
 	for (int i = 0; i < n; i++)
@@ -107,10 +107,10 @@ void t_vector_push_pop_evolved()
 	StructTest2* st2 = (StructTest2*) malloc(n * sizeof (StructTest2));
 	for (int i = 0; i < n; i++)
 	{
-		st2[i].a = (float) rand() / RAND_MAX;
+		st2[i].a = (float) random() / RAND_MAX;
 		st2[i].b = (StructTest1*) malloc(sizeof (StructTest1));
-		st2[i].b->a = rand() % 42;
-		st2[i].b->b = (double) rand() / RAND_MAX;
+		st2[i].b->a = random() % 42;
+		st2[i].b->b = (double) random() / RAND_MAX;
 		vector_push(v, st2 + i);
 	}
 	for (int i = 0; i < n; i++)
@@ -132,7 +132,7 @@ void t_vector_copy()
 
 	Vector* v = vector_new(int);
 	for (int i = 0; i < n; i++)
-		vector_push(v, rand() % 42);
+		vector_push(v, random() % 42);
 	Vector* vc = vector_copy(v);
 
 	lu_assert_int_eq(v->size, vc->size);

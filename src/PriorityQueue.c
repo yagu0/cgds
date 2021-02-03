@@ -4,11 +4,13 @@
 
 #include "cgds/PriorityQueue.h"
 
-// NOTE: no _init() method here, since PriorityQueue has no specific initialization
+// NOTE: no _init() method here,
+// since PriorityQueue has no specific initialization
 
 PriorityQueue* _priorityqueue_new(size_t dataSize, OrderType pType, UInt arity)
 {
-	PriorityQueue* priorityQueue = (PriorityQueue*) safe_malloc(sizeof (PriorityQueue));
+	PriorityQueue* priorityQueue =
+    (PriorityQueue*) safe_malloc(sizeof (PriorityQueue));
 	Heap* heap = _heap_new(dataSize, pType, arity);
 	priorityQueue->heap = heap;
 	return priorityQueue;
@@ -24,7 +26,7 @@ PriorityQueue* priorityqueue_copy(PriorityQueue* priorityQueue)
 	return priorityQueueCopy;
 }
 
-Bool priorityqueue_empty(PriorityQueue* priorityQueue)
+bool priorityqueue_empty(PriorityQueue* priorityQueue)
 {
 	return heap_empty(priorityQueue->heap);
 }

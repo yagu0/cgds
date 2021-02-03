@@ -7,7 +7,7 @@ void t_priorityqueue_clear()
 {
 	PriorityQueue* pq = priorityqueue_new(int, MIN_T, 2);
 
-	// NOTE: items with same priorities are supported; 
+	// NOTE: items with same priorities are supported;
 	// since it is unused in this test, we arbitrarily choose 0.0
 	priorityqueue_insert(pq, 0, 0.0);
 	priorityqueue_insert(pq, 0, 0.0);

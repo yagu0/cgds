@@ -1,5 +1,5 @@
 /**
- * @file Vector.cpp
+ * @file Vector.c
  */
 
 #include "cgds/Vector.h"
@@ -37,7 +37,7 @@ Vector* vector_copy(Vector* vector)
 	return vectorCopy;
 }
 
-Bool vector_empty(Vector* vector)
+bool vector_empty(Vector* vector)
 {
 	return (vector->size == 0);
 }
@@ -112,7 +112,8 @@ void vector_destroy(Vector* vector)
 
 VectorIterator* vector_get_iterator(Vector* vector)
 {
-	VectorIterator* vectorI = (VectorIterator*) safe_malloc(sizeof (VectorIterator));
+	VectorIterator* vectorI =
+    (VectorIterator*) safe_malloc(sizeof (VectorIterator));
 	vectorI->vector = vector;
 	vectorI_reset_begin(vectorI);
 	return vectorI;
@@ -128,7 +129,7 @@ void vectorI_reset_end(VectorIterator* vectorI)
 	vectorI->current = vectorI->vector->datas + vectorI->vector->size - 1;
 }
 
-Bool vectorI_has_data(VectorIterator* vectorI)
+bool vectorI_has_data(VectorIterator* vectorI)
 {
 	return (vectorI->current >= vectorI->vector->datas &&
 		vectorI->current < vectorI->vector->datas + vectorI->vector->size);

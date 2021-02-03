@@ -27,7 +27,7 @@ Stack* stack_copy(Stack* stack)
 	return stackCopy;
 }
 
-Bool stack_empty(Stack* stack)
+bool stack_empty(Stack* stack)
 {
 	return vector_empty(stack->array);
 }

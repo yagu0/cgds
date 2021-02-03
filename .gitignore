@@ -1,5 +1,6 @@
 *.o
 /src/obj/*.so
 /test/test
+/test/vgcore.*
 /doc/html/
 /doc/latex/

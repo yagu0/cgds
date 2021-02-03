@@ -8,6 +8,7 @@
 
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 /**
  * @brief Signed integer type.
@@ -23,14 +24,6 @@ typedef uint64_t UInt;
  * @brief Data type for a real number.
  */
 typedef double Real;
-
-/**
- * @brief Boolean type (prefixed with C_ to avoid some conflicts).
- */
-typedef enum {
-	C_FALSE = 0, ///< False is mapped to 0
-	C_TRUE = 1 ///< True is mapped to 1
-} Bool;
 
 /**
  * @brief Enumeration for the type of buffer or heap.

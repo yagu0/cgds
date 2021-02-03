@@ -1,7 +1,9 @@
 #ifndef LIBCGDS_H
 #define LIBCGDS_H
 
+// To include everything:
 #include <cgds/BufferTop.h>
+#include <cgds/HashTable.h>
 #include <cgds/Heap.h>
 #include <cgds/List.h>
 #include <cgds/PriorityQueue.h>

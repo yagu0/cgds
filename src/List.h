@@ -28,7 +28,7 @@ typedef struct ListCell {
  */
 typedef struct List {
 	UInt size; ///< Count elements in the list.
-	size_t dataSize; ///< Size of a list cell elements in bytes.
+	size_t dataSize; ///< Size of a list cell element in bytes.
 	ListCell* head; ///< Pointer to the first cell in the list.
 	ListCell* tail; ///< Pointer to the last cell in the list.
 } List;
@@ -52,14 +52,14 @@ List* _list_new(
 /**
  * @brief Return an allocated and initialized list.
  * @param type Type of a list element (int, char*, ...).
- * 
+ *
  * Usage: List* list_new(<Type> type)
  */
 #define list_new(type) \
 	_list_new(sizeof(type))
 
 /**
- * @brief Copy constructor (works well if items do not have allocated sub-pointers).
+ * @brief Copy constructor (shallow copy, ok for basic types).
  */
 List* list_copy(
 	List* list ///< "this" pointer.
@@ -68,7 +68,7 @@ List* list_copy(
 /**
  * @brief Check if the list is empty.
  */
-Bool list_empty(
+bool list_empty(
 	List* list ///< "this" pointer.
 );
 
@@ -90,7 +90,7 @@ void* _list_get(
  * @brief Get data at the given list cell argument.
  * @param listCell Pointer to a cell inside "this" list.
  * @param data Data to be assigned.
- * 
+ *
  * Usage: void list_get(ListCell* listCell, void data)
  */
 #define list_get(listCell, data) \
@@ -113,7 +113,7 @@ void _list_set(
  * @param list "this" pointer.
  * @param listCell Pointer to a cell inside "this" list.
  * @param data Data to be set.
- * 
+ *
  * Usage: void list_set(List* list, ListCell* listCell, void data);
  */
 #define list_set(list, listCell, data) \
@@ -144,7 +144,7 @@ void _list_insert_before(
  * @param list "this" pointer.
  * @param listCell Pointer to a cell inside "this" list.
  * @param data Data to be inserted.
- * 
+ *
  * Usage: void list_insert_before(List* list, ListCell* listCell, void data)
  */
 #define list_insert_before(list, listCell, data) \
@@ -167,7 +167,7 @@ void _list_insert_after(
  * @param list "this" pointer.
  * @param listCell Pointer to a cell inside "this" list.
  * @param data Data to be inserted.
- * 
+ *
  * Usage: void list_insert_after(List* list, ListCell* listCell, void data)
  */
 #define list_insert_after(list, listCell, data) \
@@ -188,7 +188,7 @@ void _list_insert_front(
  * @brief Add data at the beginning of the list.
  * @param list "this" pointer.
  * @param data Data to be inserted.
- * 
+ *
  * Usage: void list_insert_front(List* list, void data)
  */
 #define list_insert_front(list, data) \
@@ -209,7 +209,7 @@ void _list_insert_back(
  * @brief Add data at the end of the list.
  * @param list "this" pointer.
  * @param data Data to be inserted.
- * 
+ *
  * Usage: void list_insert_back(List* list, void data)
  */
 #define list_insert_back(list, data) \
@@ -218,7 +218,7 @@ void _list_insert_back(
 	_list_insert_back(list, &tmp); \
 }
 
-/** 
+/**
  * @brief Remove data at position given by 'listCell'.
  */
 void list_remove(
@@ -290,7 +290,7 @@ void listI_reset_tail(
 /**
  * @brief Tell if there is some data at the current index.
  */
-Bool listI_has_data(
+bool listI_has_data(
 	ListIterator* listI ///< "this" pointer.
 );
 
@@ -298,7 +298,7 @@ Bool listI_has_data(
  * @brief Return data contained in the current list cell.
  * @param listI "this" pointer.
  * @param data Data to be assigned.
- * 
+ *
  * Usage: void listI_get(ListIterator* listI, void data)
  */
 #define listI_get(listI, data) \
@@ -308,8 +308,8 @@ Bool listI_has_data(
  * @brief Set data at the current iterator position.
  * @param listI "this" pointer
  * @param data Data to assign.
- * 
- * Usage: void listI_set(ListIterator* listI, void data); 
+ *
+ * Usage: void listI_set(ListIterator* listI, void data);
  */
 #define listI_set(listI, data) \
 	list_set(listI->list, listI->current, data)
@@ -318,7 +318,7 @@ Bool listI_has_data(
  * @brief Add data before current list cell.
  * @param listI "this" pointer
  * @param data Data to be inserted.
- * 
+ *
  * Usage: void listI_insert_before(ListIteratorI* listI, void data)
  */
 #define listI_insert_before(listI, data) \
@@ -328,7 +328,7 @@ Bool listI_has_data(
  * @brief Add data after current list cell.
  * @param listI "this" pointer
  * @param data Data to be inserted.
- * 
+ *
  * Usage: void listI_insert_after(ListIteratorI* listI, void data)
  */
 #define listI_insert_after(listI, data) \

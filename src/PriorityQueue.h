@@ -23,23 +23,24 @@ typedef struct PriorityQueue {
  */
 PriorityQueue* _priorityqueue_new(
 	size_t dataSize, ///< Size in bytes of a priority queue element.
-	OrderType pType, ///< Type of priority queue: max first (hType==MAX_T) or min first (hType==MIN_T).
+	OrderType pType, ///< Type of priority queue: max or min first (MAX_T or MIN_T).
 	UInt arity ///< Arity of the wrapped heap: any integer >=2.
 );
 
 /**
  * @brief Return an allocated and initialized Queue.
  * @param type Type of a priority queue item (int, char*, ...).
- * @param pType type of priority queue: max first (hType==MAX_T) or min first (hType==MIN_T).
+ * @param pType type of priority queue: max or min first (MAX_T or MIN_T).
  * @param arity Arity of the wrapped heap: any integer >=2.
- * 
- * Usage: PriorityQueue* priorityqueue_new(<Type> type, OrderType pType, UInt arity)
+ *
+ * Usage: PriorityQueue* priorityqueue_new(\
+ *   <Type> type, OrderType pType, UInt arity)
  */
 #define priorityqueue_new(type, pType, arity) \
 	_priorityqueue_new(sizeof(type), pType, arity)
 
 /**
- * @brief Copy constructor (works well if items do not have allocated sub-pointers).
+ * @brief Copy constructor (shallow copy, ok for basic types).
  */
 PriorityQueue* priorityqueue_copy(
 	PriorityQueue* priorityQueue ///< "this" pointer.
@@ -48,7 +49,7 @@ PriorityQueue* priorityqueue_copy(
 /**
  * @brief Check if the priority queue is empty.
  */
-Bool priorityqueue_empty(
+bool priorityqueue_empty(
 	PriorityQueue* priorityQueue ///< "this" pointer.
 );
 
@@ -64,8 +65,9 @@ UInt priorityqueue_size(
  * @param priorityQueue "this" pointer.
  * @param item Item to be added.
  * @param priority Priority of the added item.
- * 
- * Usage: void priorityqueue_insert(PriorityQueue* priorityQueue, void item, Real priority)
+ *
+ * Usage: void priorityqueue_insert(\
+ *   PriorityQueue* priorityQueue, void item, Real priority)
  */
 #define priorityqueue_insert(priorityQueue, item, priority) \
 	heap_insert(priorityQueue->heap, item, priority)
@@ -76,8 +78,9 @@ UInt priorityqueue_size(
  * @param item Item to be modified.
  * @param newPriority New priority of the modified item.
  * @note If several similar items are present, only the first is affected.
- * 
- * Usage: void priorityqueue_set_priority(PriorityQueue* priorityQueue, void item, Real newPriority)
+ *
+ * Usage: void priorityqueue_set_priority(\
+ *   PriorityQueue* priorityQueue, void item, Real newPriority)
  */
 #define priorityqueue_set(priorityQueue, item, newPriority) \
 	heap_modify(priorityQueue->heap, item, newPriority)
@@ -87,7 +90,7 @@ UInt priorityqueue_size(
  * @param priorityQueue "this" pointer.
  * @param item Item to be removed.
  * @note If several similar items are present, only the first is deleted.
- * 
+ *
  * Usage: void priorityqueue_remove(PriorityQueue* priorityQueue, void item)
  */
 #define priorityqueue_remove(priorityQueue, item) \
@@ -95,7 +98,7 @@ UInt priorityqueue_size(
 
 /**
  * @brief Return what is at the beginning of the queue.
- * @return An ItemValue* 'iv' with iv->item is the data, and iv->value its priority.
+ * @return An ItemValue* 'iv' with iv->item = data, and iv->value its priority.
  */
 ItemValue* priorityqueue_peek_raw(
 	PriorityQueue* priorityQueue ///< "this" pointer.
@@ -105,7 +108,7 @@ ItemValue* priorityqueue_peek_raw(
  * @brief Peek the item at the beginning of the queue.
  * @param priorityQueue "this" pointer.
  * @param item Item to be assigned.
- * 
+ *
  * Usage: void priorityqueue_peek(PriorityQueue* priorityQueue, void item)
  */
 #define priorityqueue_peek(priorityQueue, item) \
@@ -118,7 +121,7 @@ void priorityqueue_pop(
 	PriorityQueue* priorityQueue ///< "this" pointer.
 );
 
-/** 
+/**
  * @brief Clear the entire queue.
  */
 void priorityqueue_clear(

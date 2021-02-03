@@ -19,23 +19,28 @@ Heap* _heap_new(size_t dataSize, OrderType hType, UInt arity)
 Heap* heap_copy(Heap* heap)
 {
 	Heap* heapCopy = _heap_new(heap->dataSize, heap->hType, heap->arity);
-	// HACK: vector_copy is not enough, since we also have to allocate ItemValue(->item)
+	// HACK: vector_copy is not enough,
+  // since we also have to allocate ItemValue(->item)
 	heapCopy->array->size = heap->array->size;
 	heapCopy->array->capacity = heap->array->capacity;
-	heapCopy->array->datas = (void**)safe_malloc(heap->array->capacity*sizeof(void*));
+	heapCopy->array->datas =
+    (void**)safe_malloc(heap->array->capacity*sizeof(void*));
 	for (UInt i=0; i<heap->array->size; i++)
 	{
 		heapCopy->array->datas[i] = safe_malloc(sizeof(ItemValue));
 		ItemValue itemValueCopy = (ItemValue){
-			.item=safe_malloc(heap->dataSize), 
+			.item=safe_malloc(heap->dataSize),
 			.value=((ItemValue*)(heap->array->datas[i]))->value};
-		memcpy(itemValueCopy.item, ((ItemValue*)(heap->array->datas[i]))->item, heap->dataSize);
+		memcpy(
+      itemValueCopy.item,
+      ((ItemValue*)(heap->array->datas[i]))->item,
+      heap->dataSize);
 		memcpy(heapCopy->array->datas[i], &itemValueCopy, sizeof(ItemValue));
 	}
 	return heapCopy;
 }
 
-Bool heap_empty(Heap* heap)
+bool heap_empty(Heap* heap)
 {
 	return vector_empty(heap->array);
 }
@@ -45,22 +50,22 @@ UInt heap_size(Heap* heap)
 	return vector_size(heap->array);
 }
 
-// NOTE: [perf] in two following methods, full heap[k] exchanges are not needed;
-// we keep track of the moving element without assigning it at every step,
-// thus saving array accesses and affectations + 'aux' temp. memory.
+// NOTE: [perf] in two following methods, full heap[k] exchanges are
+// not needed; we keep track of the moving element without assigning it at
+// every step, thus saving array accesses and affectations + 'aux' tmp memory.
 // --> this is not the most natural way of writing these functions.
 
 void _heap_bubble_up(Heap* heap, UInt startIndex)
 {
 	UInt currentIndex = startIndex;
 	ItemValue* startItemValue = heap->array->datas[startIndex];
-	while (C_TRUE)
+	while (true)
 	{
 		// get parent
 		UInt nextIndex = currentIndex / heap->arity;
 		Real nextValue = ((ItemValue*)(heap->array->datas[nextIndex]))->value;
 		// compare to parent (if applicable)
-		if (currentIndex == 0 || 
+		if (currentIndex == 0 ||
 			(heap->hType == MIN_T && startItemValue->value >= nextValue) ||
 			(heap->hType == MAX_T && startItemValue->value <= nextValue))
 		{
@@ -78,7 +83,7 @@ void _heap_bubble_down(Heap* heap, UInt startIndex)
 {
 	UInt currentIndex = startIndex;
 	ItemValue* startItemValue = heap->array->datas[startIndex];
-	while (C_TRUE)
+	while (true)
 	{
 		if (currentIndex * heap->arity >= heap->array->size)
 		{
@@ -121,7 +126,8 @@ void _heap_bubble_down(Heap* heap, UInt startIndex)
 
 void _heap_insert(Heap* heap, void* item, Real value)
 {
-	ItemValue itemValue = (ItemValue){.item=safe_malloc(heap->dataSize), .value=value};
+	ItemValue itemValue =
+    (ItemValue){.item=safe_malloc(heap->dataSize), .value=value};
 	memcpy(itemValue.item, item, heap->dataSize);
 	_vector_push(heap->array, &itemValue);
 	_heap_bubble_up(heap, heap->array->size-1);
@@ -136,7 +142,7 @@ void _heap_modify(Heap* heap, UInt index, Real newValue)
 	{
 		_heap_bubble_down(heap, index);
 	}
-	else 
+	else
 		_heap_bubble_up(heap, index);
 }
 
@@ -147,7 +153,7 @@ void _heap_remove(Heap* heap, UInt index)
 	heap->array->datas[index] = heap->array->datas[heap_size(heap)-1];
 	heap->array->datas[heap_size(heap)-1] = tmp;
 	vector_pop(heap->array);
-	if (heap->array->size > 0) 
+	if (heap->array->size > 0)
 		_heap_bubble_down(heap, index);
 }
 

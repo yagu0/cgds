@@ -53,14 +53,14 @@ Tree* _tree_new(
 /**
  * @brief Return an allocated and initialized tree.
  * @param type Type at a tree node (int, char*, ...).
- * 
+ *
  * Usage: Tree* tree_new(<Type> type)
  */
 #define tree_new(type) \
 	_tree_new(sizeof(type))
 
 /**
- * @brief Copy constructor (works well if items do not have allocated sub-pointers).
+ * @brief Copy constructor (shallow copy, ok for basic types).
  */
 Tree* tree_copy(
 	Tree* tree ///< "this" pointer.
@@ -69,7 +69,7 @@ Tree* tree_copy(
 /**
  * @brief Check if the tree is empty.
  */
-Bool tree_empty(
+bool tree_empty(
 	Tree* tree ///< "this" pointer.
 );
 
@@ -97,7 +97,7 @@ UInt tree_height(
 /**
  * @brief Check if a sub-tree is a leaf (without children).
  */
-Bool tree_is_leaf(
+bool tree_is_leaf(
 	TreeNode* treeNode ///< Pointer to a node in the "this" tree.
 );
 
@@ -113,7 +113,7 @@ void _tree_set_root(
  * @brief Initialize tree root when the tree is empty.
  * @param tree "this" pointer.
  * @param data Data to be assigned.
- * 
+ *
  * Usage: void tree_set_root(Tree* tree, void data)
  */
 #define tree_set_root(tree, data) \
@@ -133,7 +133,7 @@ void* _tree_get(
  * @brief Retrieve data contained in a given tree node.
  * @param treeNode Pointer to a node in the "this" tree.
  * @param data Data to be assigned.
- * 
+ *
  * Usage: void tree_get(TreeNode* treeNode, void data)
  */
 #define tree_get(treeNode, data) \
@@ -156,7 +156,7 @@ void _tree_set(
  * @param tree "this" pointer.
  * @param treeNode Pointer to a node in the "this" tree.
  * @param data Data to be assigned.
- * 
+ *
  * Usage: void tree_set(Tree* tree, TreeNode* treeNode, void data)
  */
 #define tree_set(tree, treeNode, data) \
@@ -179,7 +179,7 @@ void _tree_add_child(
  * @param tree "this" pointer.
  * @param treeNode Pointer to a node in the "this" tree.
  * @param data Data to be added.
- * 
+ *
  * Usage: void tree_add_child(Tree* tree, TreeNode* treeNode, void data)
  */
 #define tree_add_child(tree,treeNode,data) \
@@ -202,7 +202,7 @@ void _tree_add_sibling(
  * @param tree "this" pointer.
  * @param treeNode Pointer to a node in the "this" tree.
  * @param data Data to be added.
- * 
+ *
  * Usage: void tree_add_sibling(Tree* tree, TreeNode* treeNode, void data)
  */
 #define tree_add_sibling(tree, treeNode, data) \
@@ -288,7 +288,7 @@ void treeI_reset(
 /**
  * @brief Tell if there is some data at the current index.
  */
-Bool treeI_has_data(
+bool treeI_has_data(
 	TreeIterator* treeI ///< "this" pointer.
 );
 
@@ -303,7 +303,7 @@ TreeNode* treeI_get_raw(
  * @brief Get data at current tree node.
  * @param treeI "this" pointer.
  * @param data Data to be assigned.
- * 
+ *
  * Usage: void treeI_get(TreeIterator* treeI, void data)
  */
 #define treeI_get(treeI, data) \
@@ -313,7 +313,7 @@ TreeNode* treeI_get_raw(
  * @brief Set (alter) data at current tree node.
  * @param treeI "this" pointer.
  * @param data Data to be assigned.
- * 
+ *
  * Usage: void treeI_set(TreeIterator* treeI, void data)
  */
 #define treeI_set(treeI, data) \

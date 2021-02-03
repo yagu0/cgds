@@ -7,7 +7,7 @@ void t_buffertop_clear()
 {
 	BufferTop* bt = buffertop_new(int, 10, MIN_T, 2);
 
-	// NOTE: items with same values are supported; 
+	// NOTE: items with same values are supported;
 	// since it is unused in this test, we arbitrarily choose 0.0
 	buffertop_tryadd(bt, 0, 0.0);
 	buffertop_tryadd(bt, 0, 0.0);

@@ -36,14 +36,14 @@ Heap* _heap_new(
  * @param type Type of a buffer item (int, char*, ...).
  * @param hType Type of heap: max first (MAX_T) or min first (MIN_T).
  * @param arity Arity of the underlying tree.
- * 
+ *
  * Usage: Heap* heap_new(<Type> type, OrderType hType, UInt arity)
  */
 #define heap_new(type, hType, arity) \
 	_heap_new(sizeof(type), hType, arity)
 
 /**
- * @brief Copy constructor (works well if items do not have allocated sub-pointers).
+ * @brief Copy constructor (shallow copy, ok for basic types).
  */
 Heap* heap_copy(
 	Heap* heap ///< "this" pointer.
@@ -52,7 +52,7 @@ Heap* heap_copy(
 /**
  * @brief Check if the heap is empty.
  */
-Bool heap_empty(
+bool heap_empty(
 	Heap* heap ///< "this" pointer.
 );
 
@@ -64,7 +64,8 @@ UInt heap_size(
 );
 
 /**
- * @brief "Bubble up" an item-value inserted somewhere in the tree in O(log(n)) operations.
+ * @brief "Bubble up" an item-value inserted somewhere in the tree
+ * in O(log(n)) operations.
  */
 void _heap_bubble_up(
 	Heap* heap, ///< "this" pointer.
@@ -72,7 +73,8 @@ void _heap_bubble_up(
 );
 
 /**
- * @brief "Bubble down" an item-value inserted somewhere in the tree in O(log(n)) operations.
+ * @brief "Bubble down" an item-value inserted somewhere in the tree
+ * in O(log(n)) operations.
  */
 void _heap_bubble_down(
 	Heap* heap, ///< "this" pointer.
@@ -93,7 +95,7 @@ void _heap_insert(
  * @param heap "this" pointer.
  * @param item Item of type as defined in the constructor.
  * @param value Value associated with the item.
- * 
+ *
  * Usage: void heap_insert(Heap* heap, void item, Real value)
  */
 #define heap_insert(heap, item, value) \
@@ -117,7 +119,7 @@ void _heap_modify(
  * @param item_ Item to modify.
  * @param newValue New value for the item.
  * @note If several similar items are present, only the first is affected.
- * 
+ *
  * Usage: void heap_modify(Heap* heap, void item_, Real newValue)
  * WARNING: does not work if items are not basic type nor pointers.
  */
@@ -146,7 +148,7 @@ void _heap_remove(
  * @param heap "this" pointer.
  * @param item_ Item to remove.
  * @note If several similar items are present, only the first is deleted.
- * 
+ *
  * Usage: void heap_remove(Heap* heap, void item_)
  * WARNING: does not work if items are not basic type nor pointers.
  */
@@ -173,7 +175,7 @@ ItemValue* heap_top_raw(
  * @brief Return what is at the beginning of the heap.
  * @param heap "this" pointer.
  * @param item_ Item to be assigned.
- * 
+ *
  * Usage: void heap_top(Heap* heap, void item_)
  */
 #define heap_top(heap, item_) \
