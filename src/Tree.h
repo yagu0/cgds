@@ -166,9 +166,9 @@ void _tree_set(
 }
 
 /**
- * @brief Add a child to current node children.
+ * @brief Append a child to current node.
  */
-void _tree_add_child(
+TreeNode* _tree_add_child(
   Tree* tree, ///< "this" pointer.
   TreeNode* treeNode, ///< Pointer to a node in the "this" tree.
   void* data ///< Pointer to data to be added.
@@ -179,8 +179,9 @@ void _tree_add_child(
  * @param tree "this" pointer.
  * @param treeNode Pointer to a node in the "this" tree.
  * @param data Data to be added.
+ * @return The newly added tree node.
  *
- * Usage: void tree_add_child(Tree* tree, TreeNode* treeNode, void data)
+ * Usage: TreeNode* tree_add_child(Tree* tree, TreeNode* treeNode, void data)
  */
 #define tree_add_child(tree,treeNode,data) \
 { \
@@ -191,7 +192,7 @@ void _tree_add_child(
 /**
  * @brief Add a sibling to current node (after it on the right).
  */
-void _tree_add_sibling(
+TreeNode* _tree_add_sibling(
   Tree* tree, ///< "this" pointer.
   TreeNode* treeNode, ///< Pointer to a node in the "this" tree.
   void* data ///< Pointer to data to be added.
@@ -202,8 +203,9 @@ void _tree_add_sibling(
  * @param tree "this" pointer.
  * @param treeNode Pointer to a node in the "this" tree.
  * @param data Data to be added.
+ * @return The newly added tree node.
  *
- * Usage: void tree_add_sibling(Tree* tree, TreeNode* treeNode, void data)
+ * Usage: TreeNode* tree_add_sibling(Tree* tree, TreeNode* treeNode, void data)
  */
 #define tree_add_sibling(tree, treeNode, data) \
 { \

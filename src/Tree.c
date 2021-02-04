@@ -149,7 +149,7 @@ void _tree_set(Tree* tree, TreeNode* treeNode, void* data)
   memcpy(treeNode->data, data, tree->dataSize);
 }
 
-void _tree_add_child(Tree* tree, TreeNode* treeNode, void* data)
+TreeNode* _tree_add_child(Tree* tree, TreeNode* treeNode, void* data)
 {
   TreeNode* newChildNode = (TreeNode*) safe_malloc(sizeof (TreeNode));
   newChildNode->data = safe_malloc(tree->dataSize);
@@ -165,9 +165,10 @@ void _tree_add_child(Tree* tree, TreeNode* treeNode, void* data)
   newChildNode->firstChild = NULL;
   newChildNode->lastChild = NULL;
   tree->size++;
+  return newChildNode;
 }
 
-void _tree_add_sibling(Tree* tree, TreeNode* treeNode, void* data)
+TreeNode* _tree_add_sibling(Tree* tree, TreeNode* treeNode, void* data)
 {
   TreeNode* newSiblingNode = (TreeNode*) safe_malloc(sizeof (TreeNode));
   newSiblingNode->data = safe_malloc(tree->dataSize);
@@ -181,6 +182,7 @@ void _tree_add_sibling(Tree* tree, TreeNode* treeNode, void* data)
   newSiblingNode->firstChild = NULL;
   newSiblingNode->lastChild = NULL;
   tree->size++;
+  return newSiblingNode;
 }
 
 void _tree_remove_rekursiv(Tree* tree, TreeNode* treeNode)

@@ -9,7 +9,6 @@ OBJ_DIR = ./obj
 TARGET = $(OBJ_DIR)/libcgds.so
 
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
-H_FILES = $(wildcard $(SRC_DIR)/*.h)
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 all: $(TARGET)

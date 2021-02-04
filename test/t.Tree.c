@@ -98,6 +98,7 @@ void t_tree_iterate()
     lu_assert_int_eq(a, i);
     treeI_move_next(ti);
   }
+  lu_assert(!treeI_has_data(ti));
 
   treeI_destroy(ti);
   tree_destroy(t);
