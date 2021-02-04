@@ -41,9 +41,7 @@ BufferTop* _buffertop_new(
  * Usage: BufferTop* buffertop_new(<Type> type, UInt capacity, OrderTypebType, UInt arity)
  */
 #define buffertop_new(type, capacity, bType, arity) \
-{ \
-  _buffertop_new(sizeof(type), capacity, bType, arity); \
-}
+  _buffertop_new(sizeof(type), capacity, bType, arity)
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).
@@ -92,7 +90,7 @@ void _buffertop_tryadd(
  */
 #define buffertop_tryadd(bufferTop, item, value) \
 { \
-  typeof((item)) tmp = item; \
+  typeof(item) tmp = item; \
   _buffertop_tryadd(bufferTop, &tmp, value); \
 }
 

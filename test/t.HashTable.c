@@ -64,17 +64,16 @@ void t_hashtable_set_remove_basic()
   double ckValue = 0.0;
   for (int i = 0; i < n; i++)
   {
-    double d;
+    double* d;
     key[3] = (char)(48 + i);
     hashtable_get(h, key, d);
-    lu_assert_dbl_eq(d, ckValue);
+    lu_assert_dbl_eq(*d, ckValue);
     ckValue += 1.0;
   }
 
   //Remove keys / values
   for (int i = 0; i < n; i++)
   {
-    double d;
     key[3] = (char)(48 + i);
     hashtable_delete(h, key);
   }
@@ -88,8 +87,8 @@ void t_hashtable_getnull_modify()
   int n = 10;
 
   HashTable* h = hashtable_new(StructTest1, 4);
-  StructTest1* st1 = (StructTest1*) malloc(n * sizeof (StructTest1));
-  char* key = "key_";
+  StructTest1* st1 = (StructTest1*) malloc(n * sizeof(StructTest1));
+  char key[] = "key_";
   for (int i = 0; i < n; i++)
   {
     key[3] = (char)(48 + i);
@@ -101,11 +100,12 @@ void t_hashtable_getnull_modify()
   {
     //another way to access elements
     key[3] = (char)(48 + i);
-    StructTest1 st1Cell;
+    StructTest1* st1Cell;
     hashtable_get(h, key, st1Cell);
-    lu_assert_int_eq(st1Cell.a, st1[i].a);
-    lu_assert_dbl_eq(st1Cell.b, st1[i].b);
+    lu_assert_int_eq(st1Cell->a, st1[i].a);
+    lu_assert_dbl_eq(st1Cell->b, st1[i].b);
   }
+  safe_free(st1);
 
   // Get null:
   StructTest1* stmp;
@@ -114,21 +114,20 @@ void t_hashtable_getnull_modify()
   hashtable_get(h, "key32", stmp);
   lu_assert(stmp == NULL);
   // Modify:
-  StructTest1* stMod;
-  stMod->a = -17;
-  stMod->b = 3.0;
+  StructTest1 stMod;
+  stMod.a = -17;
+  stMod.b = 3.0;
   hashtable_set(h, "key1", stMod);
   hashtable_get(h, "key1", stmp);
-  lu_assert_int_eq(stmp->a, stMod->a);
-  lu_assert_dbl_eq(stmp->b, stMod->b);
-  stMod->a = -7;
-  stMod->b = 3.5;
+  lu_assert_int_eq(stmp->a, stMod.a);
+  lu_assert_dbl_eq(stmp->b, stMod.b);
+  stMod.a = -7;
+  stMod.b = 3.5;
   hashtable_set(h, "key5", stMod);
   hashtable_get(h, "key5", stmp);
-  lu_assert_int_eq(stmp->a, stMod->a);
-  lu_assert_dbl_eq(stmp->b, stMod->b);
+  lu_assert_int_eq(stmp->a, stMod.a);
+  lu_assert_dbl_eq(stmp->b, stMod.b);
 
-  safe_free(st1);
   hashtable_destroy(h);
 }
 
@@ -137,7 +136,7 @@ void t_hashtable_copy()
   int n = 10;
 
   HashTable* h = hashtable_new(int, 8);
-  char* key = "key_";
+  char key[] = "key_";
   for (int i = 0; i < n; i++)
   {
     key[3] = (char)(48 + i);
@@ -146,13 +145,13 @@ void t_hashtable_copy()
   HashTable* hc = hashtable_copy(h);
 
   lu_assert_int_eq(h->size, hc->size);
-  int a, b;
+  int *a, *b;
   for (int i = 0; i < n; i++)
   {
     key[3] = (char)(48 + i);
     hashtable_get(h, key, a);
     hashtable_get(hc, key, b);
-    lu_assert_int_eq(a, b);
+    lu_assert_int_eq(*a, *b);
   }
   hashtable_destroy(h);
   hashtable_destroy(hc);

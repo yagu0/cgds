@@ -16,7 +16,7 @@ void _hashtable_init(HashTable* hashTable, size_t dataSize, size_t hashSize)
 
 HashTable* _hashtable_new(size_t dataSize, size_t hashSize)
 {
-  HashTable* hashTable = (HashTable*) safe_malloc(sizeof (HashTable));
+  HashTable* hashTable = (HashTable*) safe_malloc(sizeof(HashTable));
   _hashtable_init(hashTable, dataSize, hashSize);
   return hashTable;
 }
@@ -34,7 +34,7 @@ HashTable* hashtable_copy(HashTable* hashTable)
     while (cell != NULL)
     {
       // cellCopy == NULL (from empty list)
-      cellCopy = (HashCell*) safe_malloc(sizeof(HashCell*));
+      cellCopy = (HashCell*) safe_malloc(sizeof(HashCell));
       cellCopy->key = (char*) safe_malloc(strlen(cell->key) + 1);
       strcpy(cellCopy->key, cell->key);
       cellCopy->data = safe_malloc(hashTable->dataSize);
@@ -65,8 +65,8 @@ UInt _compute_hash(char* key, size_t hashSize)
   UInt res = 0;
   for (unsigned char* s = key; *s != '\0'; s++)
     // NOTE: '31' from here https://stackoverflow.com/a/4384446
-    res += *s + 31 * res;
-  return res % hashSize;
+    res = (*s + 31 * res) % hashSize;
+  return res;
 }
 
 void* _hashtable_get(HashTable* hashTable, char* key)
@@ -75,7 +75,8 @@ void* _hashtable_get(HashTable* hashTable, char* key)
   HashCell* cell = hashTable->head[hashIdx];
   while (cell != NULL)
   {
-    if (strcmp(cell->key, key) == 0) return cell->data;
+    if (strcmp(cell->key, key) == 0)
+      return cell->data;
     cell = cell->next;
   }
   return NULL;

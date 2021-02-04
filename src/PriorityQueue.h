@@ -36,9 +36,7 @@ PriorityQueue* _priorityqueue_new(
  * Usage: PriorityQueue* priorityqueue_new(<Type> type, OrderType pType, UInt arity)
  */
 #define priorityqueue_new(type, pType, arity) \
-{ \
-  _priorityqueue_new(sizeof(type), pType, arity); \
-}
+  _priorityqueue_new(sizeof(type), pType, arity)
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).

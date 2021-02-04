@@ -4,15 +4,17 @@
 
 #include "cgds/BufferTop.h"
 
-// NOTE: no _init() method here, since BufferTop has no specific initialization
+// NOTE: no init() method here, since BufferTop has no specific initialization
 
-BufferTop* _buffertop_new(size_t dataSize, UInt capacity, OrderType bType, UInt arity)
+BufferTop* _buffertop_new(
+  size_t dataSize, UInt capacity, OrderType bType, UInt arity)
 {
   BufferTop* bufferTop = (BufferTop*) safe_malloc(sizeof (BufferTop));
   bufferTop->capacity = capacity;
   bufferTop->bType = bType; //redondant, but facilitate understanding
   // WARNING: heap must have opposite type: "smallest" element first
-  bufferTop->heap = _heap_new(dataSize, (bType == MAX_T ? MIN_T : MAX_T), arity);
+  bufferTop->heap =
+    _heap_new(dataSize, (bType == MAX_T ? MIN_T : MAX_T), arity);
   return bufferTop;
 }
 
@@ -62,15 +64,15 @@ void _buffertop_tryadd(BufferTop* bufferTop, void* item, Real value)
     (bufferTop->bType == MAX_T &&
     value <= ((ItemValue*) (bufferTop->heap->array->datas[0]))->value)))
   {
-    // shortcut : if value "worse" than top->value and buffer is full, skip
+    // Shortcut : if value "worse" than top->value and buffer is full, skip
     return;
   }
 
-  // insertion somewhere in the item-values heap
+  // Insertion somewhere in the item-values heap
   _heap_insert(bufferTop->heap, item, value);
 
   if (heap_size(bufferTop->heap) > bufferTop->capacity)
-    // we must remove current root
+    // We must remove current root
     heap_pop(bufferTop->heap);
 }
 

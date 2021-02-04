@@ -41,9 +41,7 @@ Stack* _stack_new(
  * Usage: Stack* stack_new(<Type> type)
  */
 #define stack_new(type) \
-{ \
-  _stack_new(sizeof(type)); \
-}
+  _stack_new(sizeof(type))
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).
@@ -83,8 +81,8 @@ void _stack_push(
  */
 #define stack_push(stack, data) \
 { \
-  typeof((data)) tmp = data; \
-  _stack_push(stack,&tmp); \
+  typeof(data) tmp = data; \
+  _stack_push(stack, &tmp); \
 }
 
 /**

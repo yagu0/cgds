@@ -9,7 +9,6 @@
 #include <string.h>
 #include "cgds/safe_alloc.h"
 #include "cgds/types.h"
-#include "cgds/Vector.h"
 
 /**
  * @brief Cell of a dictionary.
@@ -54,9 +53,7 @@ HashTable* _hashtable_new(
  * Usage: HashTable* hashtable_new(<Type> type, UInt hash_size)
  */
 #define hashtable_new(type, hsize) \
-{ \
-  _hashtable_new(sizeof(type), hsize); \
-}
+  _hashtable_new(sizeof(type), hsize)
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).
@@ -91,14 +88,13 @@ void* _hashtable_get(
  * @brief Lookup element of given key.
  * @param hashTable "this" pointer.
  * @param key Key of the element to retrieve..
- * @param data 'out' variable to contain the result.
+ * @param data 'out' variable (ptr) to contain the result.
  *
  * Usage: void hashtable_get(HashTable* hashTable, char* key, void data)
  */
 #define hashtable_get(hashTable, key, data) \
 { \
-  void* pData = _hashtable_get(hashTable, key); \
-  data = *((typeof(&data))pData); \
+  data = (typeof(data))_hashtable_get(hashTable, key); \
 }
 
 /**
@@ -120,7 +116,7 @@ void _hashtable_set(
  */
 #define hashtable_set(hashTable, key, data) \
 { \
-  typeof((data)) tmp = data; \
+  typeof(data) tmp = data; \
   _hashtable_set(hashTable, key, &tmp); \
 }
 

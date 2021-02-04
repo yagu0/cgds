@@ -4,7 +4,7 @@
 
 #include "cgds/Heap.h"
 
-// NOTE: no _init() method here, since Heap has no specific initialization
+// NOTE: no init() method here, since Heap has no specific initialization
 
 Heap* _heap_new(size_t dataSize, OrderType hType, UInt arity)
 {
@@ -25,7 +25,7 @@ Heap* heap_copy(Heap* heap)
   heapCopy->array->capacity = heap->array->capacity;
   heapCopy->array->datas =
     (void**)safe_malloc(heap->array->capacity*sizeof(void*));
-  for (UInt i=0; i<heap->array->size; i++)
+  for (UInt i = 0; i < heap->array->size; i++)
   {
     heapCopy->array->datas[i] = safe_malloc(sizeof(ItemValue));
     ItemValue itemValueCopy = (ItemValue){
@@ -94,7 +94,7 @@ void _heap_bubble_down(Heap* heap, UInt startIndex)
     // find top child (min or max)
     UInt topChildIndex;
     Real topChildValue = (heap->hType == MIN_T ? INFINITY : -INFINITY);
-    for (Int i=0; i<heap->arity; i++)
+    for (UInt i = 0; i < heap->arity; i++)
     {
       UInt childIndex = i + currentIndex * heap->arity;
       if (childIndex >= heap->array->size)
@@ -170,11 +170,8 @@ void heap_pop(Heap* heap)
 void heap_clear(Heap* heap)
 {
   for (UInt i = 0; i < heap->array->size; i++)
-  {
     // Extra memory releases which wouldn't be done in vector_clear()
     safe_free(((ItemValue*)(heap->array->datas[i]))->item);
-    //safe_free((ItemValue*)heap->array->datas[i]);
-  }
   vector_clear(heap->array);
 }
 

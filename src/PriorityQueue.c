@@ -4,7 +4,7 @@
 
 #include "cgds/PriorityQueue.h"
 
-// NOTE: no _init() method here,
+// NOTE: no init() method here,
 // since PriorityQueue has no specific initialization
 
 PriorityQueue* _priorityqueue_new(size_t dataSize, OrderType pType, UInt arity)

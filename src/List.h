@@ -56,9 +56,7 @@ List* _list_new(
  * Usage: List* list_new(<Type> type)
  */
 #define list_new(type) \
-{ \
-  _list_new(sizeof(type)); \
-}
+  _list_new(sizeof(type))
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).
@@ -120,7 +118,7 @@ void _list_set(
  */
 #define list_set(list, listCell, data) \
 { \
-  typeof((data)) tmp = data; \
+  typeof(data) tmp = data; \
   _list_set(list, listCell, &tmp); \
 }
 
@@ -151,7 +149,7 @@ void _list_insert_before(
  */
 #define list_insert_before(list, listCell, data) \
 { \
-  typeof((data)) tmp = data; \
+  typeof(data) tmp = data; \
   _list_insert_before(list, listCell, &tmp); \
 }
 
@@ -174,7 +172,7 @@ void _list_insert_after(
  */
 #define list_insert_after(list, listCell, data) \
 { \
-  typeof((data)) tmp = data; \
+  typeof(data) tmp = data; \
   _list_insert_after(list, listCell, &tmp); \
 }
 
@@ -195,7 +193,7 @@ void _list_insert_front(
  */
 #define list_insert_front(list, data) \
 { \
-  typeof((data)) tmp = data; \
+  typeof(data) tmp = data; \
   _list_insert_front(list, &tmp); \
 }
 
@@ -216,7 +214,7 @@ void _list_insert_back(
  */
 #define list_insert_back(list, data) \
 { \
-  typeof((data)) tmp = data; \
+  typeof(data) tmp = data; \
   _list_insert_back(list, &tmp); \
 }
 

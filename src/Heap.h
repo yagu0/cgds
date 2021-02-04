@@ -40,9 +40,7 @@ Heap* _heap_new(
  * Usage: Heap* heap_new(<Type> type, OrderType hType, UInt arity)
  */
 #define heap_new(type, hType, arity) \
-{ \
-  _heap_new(sizeof(type), hType, arity); \
-}
+  _heap_new(sizeof(type), hType, arity)
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).
@@ -102,7 +100,7 @@ void _heap_insert(
  */
 #define heap_insert(heap, item, value) \
 { \
-  typeof((item)) tmp = item; \
+  typeof(item) tmp = item; \
   _heap_insert(heap, &tmp, value); \
 }
 
@@ -129,7 +127,7 @@ void _heap_modify(
 #define heap_modify(heap, item_, newValue) \
 { \
   UInt index = 0; \
-  typeof((item_)) item__ = item_; \
+  typeof(item_) item__ = item_; \
   for (; index<heap->array->size; index++) \
   { \
     void* pItem = ((ItemValue*)(heap->array->datas[index]))->item; \
@@ -159,7 +157,7 @@ void _heap_remove(
 #define heap_remove(heap, item_) \
 { \
   UInt index = 0; \
-  typeof((item_)) item__ = item_; \
+  typeof(item_) item__ = item_; \
   for (; index<heap->array->size; index++) \
   { \
     void* pItem = ((ItemValue*)(heap->array->datas[index]))->item; \

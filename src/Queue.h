@@ -44,9 +44,7 @@ Queue* _queue_new(
  * Usage: Queue* queue_new(<Type> type)
  */
 #define queue_new(type) \
-{ \
-  _queue_new(sizeof(type)); \
-}
+  _queue_new(sizeof(type))
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).
@@ -86,7 +84,7 @@ void _queue_push(
  */
 #define queue_push(queue, data) \
 { \
-  typeof((data)) tmp = data; \
+  typeof(data) tmp = data; \
   _queue_push(queue, &tmp); \
 }
 

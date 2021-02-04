@@ -57,9 +57,7 @@ Tree* _tree_new(
  * Usage: Tree* tree_new(<Type> type)
  */
 #define tree_new(type) \
-{ \
-  _tree_new(sizeof(type)); \
-}
+  _tree_new(sizeof(type))
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).
@@ -120,7 +118,7 @@ void _tree_set_root(
  */
 #define tree_set_root(tree, data) \
 { \
-  typeof((data)) tmp = data; \
+  typeof(data) tmp = data; \
   _tree_set_root(tree, &tmp); \
 }
 
@@ -163,8 +161,8 @@ void _tree_set(
  */
 #define tree_set(tree, treeNode, data) \
 { \
-  typeof((data)) tmp = data; \
-  _tree_set(tree,treeNode,&tmp); \
+  typeof(data) tmp = data; \
+  _tree_set(tree, treeNode, &tmp); \
 }
 
 /**
@@ -186,8 +184,8 @@ void _tree_add_child(
  */
 #define tree_add_child(tree,treeNode,data) \
 { \
-  typeof((data)) tmp = data; \
-  _tree_add_child(tree,treeNode,&tmp); \
+  typeof(data) tmp = data; \
+  _tree_add_child(tree, treeNode, &tmp); \
 }
 
 /**
@@ -209,7 +207,7 @@ void _tree_add_sibling(
  */
 #define tree_add_sibling(tree, treeNode, data) \
 { \
-  typeof((data)) tmp = data; \
+  typeof(data) tmp = data; \
   _tree_add_sibling(tree, treeNode, &tmp); \
 }
 

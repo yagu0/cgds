@@ -46,9 +46,7 @@ Vector* _vector_new(
  * Usage: Vector* vector_new(<Type> type)
  */
 #define vector_new(type) \
-{ \
-  _vector_new(sizeof(type)); \
-}
+  _vector_new(sizeof(type))
 
 /**
  * @brief Copy constructor (shallow copy, ok for basic types).
@@ -96,8 +94,8 @@ void _vector_push(
  */
 #define vector_push(vector, data) \
 { \
-  typeof((data)) tmp = data; \
-  _vector_push(vector,&tmp); \
+  typeof(data) tmp = data; \
+  _vector_push(vector, &tmp); \
 }
 
 /**
@@ -148,8 +146,8 @@ void _vector_set(
  */
 #define vector_set(vector, index, data) \
 { \
-  typeof((data)) tmp = data; \
-  _vector_set(vector,index,&tmp); \
+  typeof(data) tmp = data; \
+  _vector_set(vector, index, &tmp); \
 }
 
 /**
@@ -243,8 +241,8 @@ void _vectorI_set(
  */
 #define vectorI_set(vectorI, data) \
 { \
-  typeof((data)) tmp = data; \
-  _vectorI_set(vectorI,&tmp); \
+  typeof(data) tmp = data; \
+  _vectorI_set(vectorI, &tmp); \
 }
 
 /**
