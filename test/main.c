@@ -23,6 +23,14 @@ int main(int argc, char** argv)
 	t_heap_push_pop_evolved();
 	t_heap_copy();
 
+	//file ./t.Set.c :
+	t_set_clear();
+	t_set_size();
+	t_set_add_remove_basic();
+	t_set_getnull_modify();
+	t_set_copy();
+	t_set_tovect();
+
 	//file ./t.List.c :
 	t_list_clear();
 	t_list_size();

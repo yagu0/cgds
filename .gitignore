@@ -1,5 +1,6 @@
 *.o
 /src/obj/*.so
+/test/main.c
 /test/test
 /test/vgcore.*
 /doc/html/

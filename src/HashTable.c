@@ -85,9 +85,8 @@ void* _hashtable_get(HashTable* hashTable, char* key)
 void _hashtable_set(HashTable* hashTable, char* key, void* data)
 {
   UInt hashIdx = _compute_hash(key, hashTable->hashSize);
-  HashCell
-    *cell = hashTable->head[hashIdx],
-    *prev = NULL;
+  HashCell *cell = hashTable->head[hashIdx],
+           *prev = NULL;
   while (cell != NULL)
   {
     if (strcmp(cell->key, key) == 0)
@@ -116,9 +115,8 @@ void _hashtable_set(HashTable* hashTable, char* key, void* data)
 void hashtable_delete(HashTable* hashTable, char* key)
 {
   UInt hashIdx = _compute_hash(key, hashTable->hashSize);
-  HashCell
-    *cell = hashTable->head[hashIdx],
-    *prev = NULL;
+  HashCell *cell = hashTable->head[hashIdx],
+           *prev = NULL;
   while (cell != NULL)
   {
     if (strcmp(cell->key, key) == 0)

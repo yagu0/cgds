@@ -90,7 +90,7 @@ void* _hashtable_get(
  * @param key Key of the element to retrieve..
  * @param data 'out' variable (ptr) to contain the result.
  *
- * Usage: void hashtable_get(HashTable* hashTable, char* key, void data)
+ * Usage: void hashtable_get(HashTable* hashTable, char* key, void* data)
  */
 #define hashtable_get(hashTable, key, data) \
 { \
@@ -122,6 +122,8 @@ void _hashtable_set(
 
 /**
  * @brief Remove the given key (+ associated value).
+ *
+ * Usage: void hashtable_delete(HashTable* hashTable, char* key)
  */
 void hashtable_delete(
   HashTable* hashTable, ///< "this" pointer.

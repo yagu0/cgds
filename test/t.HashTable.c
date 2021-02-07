@@ -71,7 +71,7 @@ void t_hashtable_set_remove_basic()
     ckValue += 1.0;
   }
 
-  //Remove keys / values
+  // Remove keys / values
   for (int i = 0; i < n; i++)
   {
     key[3] = (char)(48 + i);
@@ -98,7 +98,7 @@ void t_hashtable_getnull_modify()
   }
   for (int i = 0; i < n; i++)
   {
-    //another way to access elements
+    // Another way to access elements
     key[3] = (char)(48 + i);
     StructTest1* st1Cell;
     hashtable_get(h, key, st1Cell);

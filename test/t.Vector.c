@@ -65,7 +65,7 @@ void t_vector_push_pop_basic()
     vectorI_move_next(vi);
   }
 
-  // same, from end to beginning
+  // Same, from end to beginning
   ckValue = n - 1;
   vectorI_reset_end(vi);
   while (vectorI_has_data(vi))
@@ -94,7 +94,7 @@ void t_vector_push_pop_evolved()
   }
   for (int i = 0; i < n; i++)
   {
-    //another way to access elements
+    // Another way to access elements
     StructTest1 st1Cell;
     vector_get(v, i, st1Cell);
     lu_assert_int_eq(st1Cell.a, st1[i].a);
