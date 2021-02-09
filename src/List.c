@@ -190,12 +190,12 @@ void listI_remove(ListIterator* listI, Direction direction)
   ListCell* toTrash = listI->current;
   switch (direction)
   {
-  case FORWARD:
-    listI->current = listI->current->next;
-    break;
-  case BACKWARD:
-    listI->current = listI->current->prev;
-    break;
+    case FORWARD:
+      listI->current = listI->current->next;
+      break;
+    case BACKWARD:
+      listI->current = listI->current->prev;
+      break;
   }
   list_remove(listI->list, toTrash);
 }

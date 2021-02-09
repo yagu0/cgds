@@ -275,47 +275,49 @@ void treeI_move_next(TreeIterator* treeI)
   TreeIteratorMode mode = treeI->mode;
   switch (mode)
   {
-  case IN_DEPTH:
-    if (!tree_is_leaf(treeI->current))
-    {
-      // easy case: just descend deeper in the tree
-      treeI->current = treeI->current->firstChild;
-      return;
-    }
-    // leaf: while no next sibling is available, move up
-    while (treeI->current != NULL && treeI->current->next == NULL)
-      treeI->current = treeI->current->parent;
-    if (treeI->current != NULL)
-      // run goes on from next sibling
-      treeI->current = treeI->current->next;
-    break;
-  case IN_BREADTH:
-    if (treeI->current->next != NULL)
-    {
-      // easy case : just move to the next sibling
-      treeI->current = treeI->current->next;
-      return;
-    }
-    // try to go to next "cousin" on same level
-    if (treeI->current->parent != NULL && treeI->current->parent->next != NULL)
-    {
-      TreeNode* treeNodeParent = treeI->current->parent->next;
-      while (treeNodeParent != NULL && tree_is_leaf(treeNodeParent))
-        treeNodeParent = treeNodeParent->next;
-      if (treeNodeParent != NULL)
+    case IN_DEPTH:
+      if (!tree_is_leaf(treeI->current))
       {
-        treeI->current = treeNodeParent->firstChild;
+        // easy case: just descend deeper in the tree
+        treeI->current = treeI->current->firstChild;
         return;
       }
-    }
-    // try to go to next level
-    while (treeI->current->prev != NULL)
-      treeI->current = treeI->current->prev;
-    while (treeI->current != NULL && tree_is_leaf(treeI->current))
-      treeI->current = treeI->current->next;
-    if (treeI->current != NULL)
-      treeI->current = treeI->current->firstChild;
-    break;
+      // leaf: while no next sibling is available, move up
+      while (treeI->current != NULL && treeI->current->next == NULL)
+        treeI->current = treeI->current->parent;
+      if (treeI->current != NULL)
+        // run goes on from next sibling
+        treeI->current = treeI->current->next;
+      break;
+    case IN_BREADTH:
+      if (treeI->current->next != NULL)
+      {
+        // easy case : just move to the next sibling
+        treeI->current = treeI->current->next;
+        return;
+      }
+      // try to go to next "cousin" on same level
+      if (
+        treeI->current->parent != NULL &&
+        treeI->current->parent->next != NULL
+      ) {
+        TreeNode* treeNodeParent = treeI->current->parent->next;
+        while (treeNodeParent != NULL && tree_is_leaf(treeNodeParent))
+          treeNodeParent = treeNodeParent->next;
+        if (treeNodeParent != NULL)
+        {
+          treeI->current = treeNodeParent->firstChild;
+          return;
+        }
+      }
+      // try to go to next level
+      while (treeI->current->prev != NULL)
+        treeI->current = treeI->current->prev;
+      while (treeI->current != NULL && tree_is_leaf(treeI->current))
+        treeI->current = treeI->current->next;
+      if (treeI->current != NULL)
+        treeI->current = treeI->current->firstChild;
+      break;
   }
 }
 

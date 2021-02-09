@@ -20,10 +20,9 @@ BufferTop* _buffertop_new(
 
 BufferTop* buffertop_copy(BufferTop* bufferTop)
 {
-  BufferTop* bufferTopCopy = _buffertop_new(
-    bufferTop->heap->dataSize, bufferTop->capacity,
-    bufferTop->heap->hType, bufferTop->heap->arity);
-  heap_destroy(bufferTopCopy->heap); //TODO: bad style...
+  BufferTop* bufferTopCopy = (BufferTop*) safe_malloc(sizeof (BufferTop));
+  bufferTopCopy->capacity = bufferTop->capacity;
+  bufferTopCopy->bType = bufferTop->bType;
   bufferTopCopy->heap = heap_copy(bufferTop->heap);
   return bufferTopCopy;
 }
@@ -32,10 +31,10 @@ List* buffertop_2list(BufferTop* bufferTop)
 {
   // Copy the buffer, and then use the copy to build the list
   BufferTop* bufferTopCopy = buffertop_copy(bufferTop);
-  List* bufferInList = _list_new(bufferTop->heap->array->dataSize);
+  List* bufferInList = _list_new(bufferTop->heap->items->dataSize);
   while (!buffertop_empty(bufferTopCopy))
   {
-    void* topItem = buffertop_first_raw(bufferTopCopy)->item;
+    void* topItem = _heap_top(bufferTopCopy->heap).item;
     // NOTE: list_insert_front(), to reverse (wrong) items order
     // ==> in the returned list, top element is at head.
     _list_insert_front(bufferInList, topItem);
@@ -57,15 +56,15 @@ UInt buffertop_size(BufferTop* bufferTop)
 
 void _buffertop_tryadd(BufferTop* bufferTop, void* item, Real value)
 {
-  if (heap_size(bufferTop->heap) >= bufferTop->capacity &&
-    ((bufferTop->bType == MIN_T &&
-    value >= ((ItemValue*) (bufferTop->heap->array->datas[0]))->value)
-    ||
-    (bufferTop->bType == MAX_T &&
-    value <= ((ItemValue*) (bufferTop->heap->array->datas[0]))->value)))
-  {
-    // Shortcut : if value "worse" than top->value and buffer is full, skip
-    return;
+  if (heap_size(bufferTop->heap) >= bufferTop->capacity) {
+    Real topValue = *((Real*) (bufferTop->heap->values->datas));
+    if (
+      (bufferTop->bType == MIN_T && value >= topValue) ||
+      (bufferTop->bType == MAX_T && value <= topValue)
+    ) {
+      // Shortcut : if value "worse" than top->value and buffer is full, skip
+      return;
+    }
   }
 
   // Insertion somewhere in the item-values heap
@@ -76,9 +75,9 @@ void _buffertop_tryadd(BufferTop* bufferTop, void* item, Real value)
     heap_pop(bufferTop->heap);
 }
 
-ItemValue* buffertop_first_raw(BufferTop* bufferTop)
+ItemValue _buffertop_first(BufferTop* bufferTop)
 {
-  return heap_top_raw(bufferTop->heap);
+  return _heap_top(bufferTop->heap);
 }
 
 void buffertop_pop(BufferTop* bufferTop)

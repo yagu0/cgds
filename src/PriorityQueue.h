@@ -95,9 +95,9 @@ UInt priorityqueue_size(
 
 /**
  * @brief Return what is at the beginning of the queue.
- * @return An ItemValue* 'iv' with iv->item = data, and iv->value its priority.
+ * @return An ItemValue* 'iv' with iv.item = data, and iv.value its priority.
  */
-ItemValue* priorityqueue_peek_raw(
+ItemValue _priorityqueue_peek(
   PriorityQueue* priorityQueue ///< "this" pointer.
 );
 

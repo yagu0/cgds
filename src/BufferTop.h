@@ -18,7 +18,7 @@
 typedef struct BufferTop {
   UInt capacity; ///< Buffer capacity (in items count).
   OrderType bType; ///< Type of buffer: keep max or min items (MAX_T or MIN_T).
-  Heap* heap; ///< Item-ValueS are internally organized into a heap.
+  Heap* heap; ///< Items + values are internally organized into a heap.
 } BufferTop;
 
 /**
@@ -97,7 +97,7 @@ void _buffertop_tryadd(
 /**
  * @brief Return the top ("worst among best") ItemValue inside current buffer.
  */
-ItemValue* buffertop_first_raw(
+ItemValue _buffertop_first(
   BufferTop* bufferTop ///< "this" pointer.
 );
 
@@ -106,12 +106,12 @@ ItemValue* buffertop_first_raw(
  * @param bufferTop "this" pointer.
  * @param item_ Variable to be assigned.
  *
- * Usage: void buffertop_first(BufferTop* bufferTop, void item)
+ * Usage: void buffertop_first(BufferTop* bufferTop, void item_)
  */
 #define buffertop_first(bufferTop, item_) \
 { \
-  void* pItem = buffertop_first_raw(bufferTop)->item; \
-  item_ = *((typeof(&item_))pItem); \
+  ItemValue iv = _buffertop_first(bufferTop); \
+  item_ = *((typeof(item_)*)(iv.item)); \
 }
 
 /**

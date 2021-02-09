@@ -28,12 +28,8 @@ Vector* vector_copy(Vector* vector)
   Vector* vectorCopy = _vector_new(vector->dataSize);
   vectorCopy->size = vector->size;
   vectorCopy->capacity = vector->capacity;
-  vectorCopy->datas = (void**) safe_malloc(vector->capacity * sizeof (void*));
-  for (UInt i = 0; i < vector->size; i++)
-  {
-    vectorCopy->datas[i] = safe_malloc(vector->dataSize);
-    memcpy(vectorCopy->datas[i], vector->datas[i], vector->dataSize);
-  }
+  vectorCopy->datas = (void*) safe_malloc(vector->capacity * vector->dataSize);
+  memcpy(vectorCopy->datas, vector->datas, vector->size * vector->dataSize);
   return vectorCopy;
 }
 
@@ -49,13 +45,8 @@ UInt vector_size(Vector* vector)
 
 void _vector_realloc(Vector* vector, UInt newCapacity)
 {
-  void** rellocatedDatas = (void**) safe_malloc(newCapacity * sizeof (void*));
-  for (UInt i = 0; i < vector->size; i++)
-  {
-    rellocatedDatas[i] = (void*) safe_malloc(vector->dataSize);
-    memcpy(rellocatedDatas[i], vector->datas[i], vector->dataSize);
-    safe_free(vector->datas[i]);
-  }
+  void* rellocatedDatas = (void*) safe_malloc(newCapacity * vector->dataSize);
+  memcpy(rellocatedDatas, vector->datas, vector->size * vector->dataSize);
   safe_free(vector->datas);
   vector->datas = rellocatedDatas;
   vector->capacity = newCapacity;
@@ -63,20 +54,20 @@ void _vector_realloc(Vector* vector, UInt newCapacity)
 
 void _vector_push(Vector* vector, void* data)
 {
-  void* pData = safe_malloc(vector->dataSize);
-  memcpy(pData, data, vector->dataSize);
   if (vector->size >= vector->capacity)
   {
     UInt increasedCapacity = vector->capacity > 0 ? 2 * vector->capacity : 1;
     _vector_realloc(vector, increasedCapacity);
   }
-  vector->datas[vector->size] = pData;
+  memcpy(
+    vector->datas + vector->size * vector->dataSize,
+    data,
+    vector->dataSize);
   vector->size++;
 }
 
 void vector_pop(Vector* vector)
 {
-  safe_free(vector->datas[vector_size(vector) - 1]);
   vector->size--;
   if (vector_size(vector) <= (vector->capacity >> 1))
     _vector_realloc(vector, vector->capacity >> 1);
@@ -84,18 +75,16 @@ void vector_pop(Vector* vector)
 
 void* _vector_get(Vector* vector, UInt index)
 {
-  return vector->datas[index];
+  return vector->datas + index * vector->dataSize;
 }
 
 void _vector_set(Vector* vector, UInt index, void* data)
 {
-  memcpy(vector->datas[index], data, vector->dataSize);
+  memcpy(vector->datas + index * vector->dataSize, data, vector->dataSize);
 }
 
 void vector_clear(Vector* vector)
 {
-  for (UInt i = 0; i < vector->size; i++)
-    safe_free(vector->datas[i]);
   safe_free(vector->datas);
   _vector_init(vector, vector->dataSize);
 }
@@ -126,33 +115,38 @@ void vectorI_reset_begin(VectorIterator* vectorI)
 
 void vectorI_reset_end(VectorIterator* vectorI)
 {
-  vectorI->current = vectorI->vector->datas + vectorI->vector->size - 1;
+  vectorI->current = vectorI->vector->datas +
+    (vectorI->vector->size - 1) * vectorI->vector->dataSize;
 }
 
 bool vectorI_has_data(VectorIterator* vectorI)
 {
-  return (vectorI->current >= vectorI->vector->datas &&
-    vectorI->current < vectorI->vector->datas + vectorI->vector->size);
+  return (
+    vectorI->current >= vectorI->vector->datas &&
+    vectorI->current <
+      vectorI->vector->datas +
+      vectorI->vector->size * vectorI->vector->dataSize
+  );
 }
 
 void* _vectorI_get(VectorIterator* vectorI)
 {
-  return *(vectorI->current);
+  return vectorI->current;
 }
 
 void _vectorI_set(VectorIterator* vectorI, void* data)
 {
-  *(vectorI->current) = data;
+  memcpy(vectorI->current, data, vectorI->vector->dataSize);
 }
 
 void vectorI_move_next(VectorIterator* vectorI)
 {
-  vectorI->current++;
+  vectorI->current += vectorI->vector->dataSize;
 }
 
 void vectorI_move_prev(VectorIterator* vectorI)
 {
-  vectorI->current--;
+  vectorI->current -= vectorI->vector->dataSize;
 }
 
 void vectorI_destroy(VectorIterator* vectorI)

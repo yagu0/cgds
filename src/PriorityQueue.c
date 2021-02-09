@@ -11,17 +11,14 @@ PriorityQueue* _priorityqueue_new(size_t dataSize, OrderType pType, UInt arity)
 {
   PriorityQueue* priorityQueue =
     (PriorityQueue*) safe_malloc(sizeof (PriorityQueue));
-  Heap* heap = _heap_new(dataSize, pType, arity);
-  priorityQueue->heap = heap;
+  priorityQueue->heap = _heap_new(dataSize, pType, arity);
   return priorityQueue;
 }
 
 PriorityQueue* priorityqueue_copy(PriorityQueue* priorityQueue)
 {
-  PriorityQueue* priorityQueueCopy = _priorityqueue_new(
-    priorityQueue->heap->array->dataSize,
-    priorityQueue->heap->hType, priorityQueue->heap->arity);
-  heap_destroy(priorityQueueCopy->heap); //TODO: bad style...
+  PriorityQueue* priorityQueueCopy =
+    (PriorityQueue*) safe_malloc(sizeof (PriorityQueue));
   priorityQueueCopy->heap = heap_copy(priorityQueue->heap);
   return priorityQueueCopy;
 }
@@ -36,9 +33,9 @@ UInt priorityqueue_size(PriorityQueue* priorityQueue)
   return heap_size(priorityQueue->heap);
 }
 
-ItemValue* priorityqueue_peek_raw(PriorityQueue* priorityQueue)
+ItemValue _priorityqueue_peek(PriorityQueue* priorityQueue)
 {
-  return heap_top_raw(priorityQueue->heap);
+  return _heap_top(priorityQueue->heap);
 }
 
 void priorityqueue_pop(PriorityQueue* priorityQueue)

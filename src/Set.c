@@ -38,8 +38,10 @@ Set* set_copy(Set* set)
       cellCopy = (SetCell*) safe_malloc(sizeof(SetCell));
       cellCopy->item = safe_malloc(set->dataSize);
       memcpy(cellCopy->item, cell->item, set->dataSize);
-      if (prev == NULL) setCopy->head[i] = cellCopy;
-      else prev->next = cellCopy;
+      if (prev == NULL)
+        setCopy->head[i] = cellCopy;
+      else
+        prev->next = cellCopy;
       prev = cellCopy;
       cell = cell->next;
     }

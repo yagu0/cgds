@@ -18,7 +18,7 @@
  * @brief Generic resizable array.
  */
 typedef struct Vector {
-  void** datas; ///< Data array of fixed length (reallocated if needed).
+  void* datas; ///< Data array of fixed length (reallocated if needed).
   size_t dataSize; ///< Size in bytes of a vector element.
   UInt size; ///< Count elements in the vector.
   UInt capacity; ///< Current maximal capacity; always larger than size.
@@ -173,7 +173,7 @@ void vector_destroy(
  */
 typedef struct VectorIterator {
   Vector* vector; ///< Vector to be iterated.
-  void** current; ///< Current vector element.
+  void* current; ///< Current vector element.
 } VectorIterator;
 
 /**
